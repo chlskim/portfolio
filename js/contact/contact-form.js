@@ -27,6 +27,8 @@
   /* Guard: bail if the contact form is not on this page */
   if (!form || !submitBtn || !btnText || !successMsg || !errorMsg) return;
 
+  const formEndpoint = new URL(form.action);
+
 
   /* ── Form submission handler ─────────────────────────────────── */
   form.addEventListener('submit', (e) => {
@@ -42,10 +44,18 @@
     btnText.textContent   = 'Sending…';
 
     /* POST the form data to the Formspree endpoint */
-    fetch(form.action, {
+    if (formEndpoint.protocol !== 'https:' || formEndpoint.hostname !== 'formspree.io') {
+      errorMsg.style.display = 'block';
+      submitBtn.disabled  = false;
+      btnText.textContent = 'Send Message';
+      return;
+    }
+
+    fetch(formEndpoint.href, {
       method : 'POST',
       body   : new FormData(form),
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Accept': 'application/json' },
+      credentials: 'omit'
     })
     .then(response => {
       if (response.ok) {

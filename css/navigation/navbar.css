@@ -40,6 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-width: 0;
 }
 
 /* ── Logo / Monogram ─────────────────────────────────────────────
@@ -150,6 +151,9 @@
   border: none;
   cursor: pointer;
   padding: 4px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1002;
 }
 
 .nav-toggle span {
@@ -173,7 +177,10 @@
 @media (max-width: 768px) {
 
   /* Show hamburger, hide desktop nav */
-  .nav-toggle { display: flex; }
+  .nav-toggle {
+    display: flex !important;
+    margin-left: auto;
+  }
 
   /* ── Mobile menu ─────────────────────────────────────────────
      Full-width dropdown below the navbar. Hidden by default.
@@ -185,6 +192,8 @@
     top: 100%;
     left: 0;
     width: 100%;
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
     background: rgba(10, 21, 48, 0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);

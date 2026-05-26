@@ -75,6 +75,19 @@
     setMobileMenu(!isOpen);
   });
 
+  const desktopQuery = window.matchMedia('(min-width: 769px)');
+  const closeMenuOnDesktop = (event) => {
+    if (event.matches) {
+      setMobileMenu(false);
+    }
+  };
+
+  if (desktopQuery.addEventListener) {
+    desktopQuery.addEventListener('change', closeMenuOnDesktop);
+  } else {
+    desktopQuery.addListener(closeMenuOnDesktop);
+  }
+
   /* Clicking any nav link inside the open drawer closes the menu.
      The dropdown trigger (.nav-link--dropdown) is excluded here —
      it controls its own sub-panel and must not close the whole drawer. */

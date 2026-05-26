@@ -48,9 +48,9 @@
   /* ── Spacing ─────────────────────────────────────────────────────
      Padding inside each major section and container max-width.
      ─────────────────────────────────────────────────────────────── */
-  --section-padding:   100px;
+  --section-padding:   clamp(72px, 9vw, 100px);
   --container-max:     1200px;
-  --container-pad:     40px;
+  --container-pad:     clamp(16px, 5vw, 40px);
 
   /* ── Font Families ───────────────────────────────────────────────
      display  = Cinzel — ultra-formal, editorial labels & monograms
