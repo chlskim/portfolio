@@ -1,0 +1,65 @@
+/* ================================================================
+   RESET.CSS — Browser Normalization & Base Element Styles
+   Uses the box-model reset pattern to ensure consistent sizing.
+   ================================================================ */
+
+/* ── Box-model reset ─────────────────────────────────────────────
+   Applies border-box to every element so padding and borders
+   are included in the declared width/height — no surprises.
+   ─────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;              /* 1rem = 16px baseline */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;  /* smoother text on macOS/iOS */
+  overflow-x: hidden;                   /* prevents horizontal scroll on mobile */
+}
+
+/* ── Media elements ──────────────────────────────────────────────
+   Images and videos are responsive by default and won't overflow.
+   ─────────────────────────────────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Interactive elements ────────────────────────────────────────
+   Remove browser default styling from common interactive elements.
+   ─────────────────────────────────────────────────────────────── */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}

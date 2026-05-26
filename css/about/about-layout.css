@@ -1,0 +1,515 @@
+/* ================================================================
+   ABOUT — about-layout.css
+   Editorial split panel: left = image/GIF frame, right = bio content.
+   Uses a 50/50 CSS Grid that stacks into a single column on mobile.
+   ================================================================ */
+
+/* ── Section wrapper ─────────────────────────────────────────────
+   No padding here — the split panels each handle their own spacing.
+   ─────────────────────────────────────────────────────────────── */
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 50/50 horizontal split — stacks below 900px (see about-responsive.css) */
+.am-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+
+/* ================================================================
+   LEFT PANEL — Full-height image/GIF frame with identity overlay
+   ================================================================ */
+
+.am-left-panel {
+  position: relative;
+  overflow: hidden;
+  background: #05090f;
+  display: flex;
+  align-items: flex-end;    /* pushes the identity strip to the bottom */
+}
+
+/* GIF fills the entire panel using object-fit: cover */
+.am-left-panel__gif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── Gradient overlay ────────────────────────────────────────────
+   Darkens the bottom ~40% of the panel so the text on top is
+   readable against any GIF content. Stronger at the very bottom.
+   ─────────────────────────────────────────────────────────────── */
+.am-left-panel__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 9, 15, 0.30)  0%,
+    rgba(5, 9, 15, 0.10) 40%,
+    rgba(5, 9, 15, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* Thin editorial ruled lines — match the hero's style */
+.am-left-panel__ruled {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.am-left-panel__ruled span {
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Placeholder ─────────────────────────────────────────────────
+   Shown only when the GIF file is missing (via onerror handler).
+   Dashed border with instructions for where to place the file.
+   ─────────────────────────────────────────────────────────────── */
+.am-left-panel__placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px dashed rgba(232, 197, 71, 0.25);
+  margin: 24px;
+}
+
+.am-left-panel__placeholder-icon {
+  font-size: 2rem;
+  color: rgba(232, 197, 71, 0.4);
+}
+
+.am-left-panel__placeholder-text {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: rgba(232, 197, 71, 0.7);
+  text-transform: uppercase;
+}
+
+.am-left-panel__placeholder-hint {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Identity strip ──────────────────────────────────────────────
+   Floated over the bottom of the image. Contains the eyebrow,
+   name heading, and status badge. z-index 3 sits above the overlay.
+   ─────────────────────────────────────────────────────────────── */
+.am-left-panel__identity {
+  position: relative;
+  z-index: 3;
+  padding: 40px 36px;
+  width: 100%;
+}
+
+.am-left-panel__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(232, 197, 71, 0.8);
+  margin-bottom: 10px;
+}
+
+.am-left-panel__name {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 0.95;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* The last name in italics with a gold fill */
+.am-left-panel__name em {
+  font-style: italic;
+  color: #e8c547;
+  display: block;
+}
+
+/* "IT Student & Developer" status badge */
+.am-left-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(32, 200, 180, 0.85);
+  border: 1px solid rgba(32, 200, 180, 0.25);
+  border-radius: 100px;
+  padding: 6px 18px;
+  background: rgba(32, 200, 180, 0.06);
+}
+
+/* ── Pulsing dot ─────────────────────────────────────────────────
+   Signals "active/online" status. The glow pulses via keyframe animation.
+   ─────────────────────────────────────────────────────────────── */
+.am-left-panel__badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(32, 200, 180, 1);
+  box-shadow: 0 0 6px rgba(32, 200, 180, 0.8);
+  flex-shrink: 0;
+  animation: amBadgePulse 2s ease-in-out infinite;
+}
+
+@keyframes amBadgePulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(32, 200, 180, 0.6); }
+  50%       { box-shadow: 0 0 12px rgba(32, 200, 180, 1); }
+}
+
+/* Corner bracket ornaments — same style as the hero panel corners */
+.am-left-panel__corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.am-left-panel__corner--tl { top: 12px;    left: 12px;  border-top: 1.5px solid rgba(232, 197, 71, 0.5); border-left: 1.5px solid rgba(232, 197, 71, 0.5); }
+.am-left-panel__corner--tr { top: 12px;    right: 12px; border-top: 1.5px solid rgba(232, 197, 71, 0.5); border-right: 1.5px solid rgba(232, 197, 71, 0.5); }
+.am-left-panel__corner--bl { bottom: 12px; left: 12px;  border-bottom: 1.5px solid rgba(232, 197, 71, 0.5); border-left: 1.5px solid rgba(232, 197, 71, 0.5); }
+.am-left-panel__corner--br { bottom: 12px; right: 12px; border-bottom: 1.5px solid rgba(232, 197, 71, 0.5); border-right: 1.5px solid rgba(232, 197, 71, 0.5); }
+
+
+/* ================================================================
+   RIGHT PANEL — Parchment-style editorial bio + education timeline
+   ================================================================ */
+
+.am-right-panel {
+  position: relative;
+  background: #0d1b3e;
+  overflow: hidden;
+}
+
+/* ── Atmospheric decorations ─────────────────────────────────────
+   Grain, glow orbs, and ruled lines matching the hero palette.
+   All pointer-events: none so they don't block text interaction.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-panel__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+.am-right-panel__atmo {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.am-right-panel__atmo--rose {
+  top: -10%; right: -10%;
+  width: 50vw; height: 50vw;
+  max-width: 500px; max-height: 500px;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.12) 0%, transparent 70%);
+}
+
+.am-right-panel__atmo--cool {
+  bottom: -10%; left: -5%;
+  width: 35vw; height: 35vw;
+  max-width: 380px; max-height: 380px;
+  background: radial-gradient(circle, rgba(74, 111, 165, 0.18) 0%, transparent 70%);
+}
+
+.am-right-panel__ruled {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.am-right-panel__ruled span {
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Main content area — sits above all atmospheric layers */
+.am-right-panel__inner {
+  position: relative;
+  z-index: 1;
+  padding: 80px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  height: 100%;
+}
+
+/* ── "Who I Am" eyebrow ──────────────────────────────────────────
+   Centered text with flanking gradient lines.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.am-right-eyebrow__line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 197, 71, 0.4), transparent);
+}
+
+.am-right-eyebrow__text {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 197, 71, 0.75);
+}
+
+/* ── Heading row ─────────────────────────────────────────────────
+   Flex row: headline text on the left, circular photo on the right.
+   Wraps into a column below a certain panel width.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.am-right-heading__main {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.15;
+  flex: 1;
+  min-width: 180px;
+}
+
+/* "code & design" — gold-to-blue gradient italic */
+.am-right-heading__main em {
+  font-style: italic;
+  background: linear-gradient(120deg, rgba(232, 197, 71, 0.95), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Profile photo — circular with gold ring and a gloss shine sweep */
+.am-right-heading__pfp-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  /* Clip the shine sweep so it never bleeds outside the circle */
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.am-right-heading__pfp {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  position: relative;
+  z-index: 1;   /* sit below the ::after shine sweep (z-index: 2) */
+  border: 2.5px solid rgba(232, 197, 71, 0.5);
+}
+
+/* Gloss sweep — a narrow white highlight that slides across the photo
+   from top-left to bottom-right every 5 seconds, like light catching
+   a shiny surface. Sits above the <img> via z-index. */
+.am-right-heading__pfp-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    120deg,
+    transparent        20%,
+    rgba(255,255,255,0.55) 48%,
+    rgba(255,255,255,0.15) 53%,
+    transparent        65%
+  );
+  /* Start off-screen left, sweep through, park off-screen right */
+  transform: translateX(-150%);
+  animation: pfp-shine 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Translate from left to right — the clip on the wrap keeps it circular */
+@keyframes pfp-shine {
+  0%        { transform: translateX(-180%); }
+  30%, 100% { transform: translateX( 180%); }
+}
+
+/* Full-width gold gradient rule — separates heading from bio */
+.am-right-heading__rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(232, 197, 71, 0.6), transparent);
+  flex-basis: 100%;
+}
+
+/* ── Bio paragraphs ──────────────────────────────────────────────
+   Lead paragraph is slightly larger and brighter than the body copy.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.am-right-bio__lead {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(232, 238, 248, 0.85);
+}
+
+.am-right-bio__body {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(232, 238, 248, 0.55);
+}
+
+/* ── Education timeline ──────────────────────────────────────────
+   Each entry uses a 3-column grid: vertical beam | dot marker | text.
+   The beam is a gradient line connecting entries top-to-bottom.
+   The last entry hides its beam since there's nothing below it.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-edu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.am-right-edu__label {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(32, 200, 180, 0.7);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.am-right-edu__item {
+  display: grid;
+  grid-template-columns: 1px 20px 1fr;
+  gap: 0 14px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+/* Vertical beam — fades out at the bottom */
+.am-right-edu__beam {
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(32, 200, 180, 0.5), rgba(32, 200, 180, 0.05));
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Hide the beam on the last item — no entry below it */
+.am-right-edu__item:last-child .am-right-edu__beam { display: none; }
+
+/* Timeline dot — small circle indicator at each entry */
+.am-right-edu__dot {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.am-right-edu__dot span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(32, 200, 180, 0.8);
+  background: rgba(32, 200, 180, 0.2);
+  display: block;
+}
+
+/* Text content to the right of the beam + dot */
+.am-right-edu__text {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.am-right-edu__year {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 197, 71, 0.75);
+}
+
+.am-right-edu__degree {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.am-right-edu__school {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(232, 238, 248, 0.6);
+}
+
+.am-right-edu__honors {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(32, 200, 180, 0.65);
+  font-style: italic;
+}
+
+/* ── CTA row ─────────────────────────────────────────────────────
+   Contains the primary "Let's Connect" button.
+   ─────────────────────────────────────────────────────────────── */
+.am-right-cta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
