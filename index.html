@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Chelsea Resada</title>
+  <meta name="description" content="Digital portfolio of Chelsea Resada — BSIT student, aspiring developer, and creative thinker." />
+
+  <!--
+    Google Fonts:
+      Cormorant Garamond — editorial serif (headings, names)
+      Lato              — clean sans-serif (body text, labels)
+      Cinzel            — all-caps display (monograms, eyebrows)
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- ── Global styles (load order matters) ── -->
+  <link rel="stylesheet" href="css/global/variables.css" />
+  <link rel="stylesheet" href="css/global/reset.css" />
+  <link rel="stylesheet" href="css/global/typography.css" />
+  <link rel="stylesheet" href="css/global/utilities.css" />
+
+  <!-- ── Component styles ── -->
+  <link rel="stylesheet" href="css/navigation/navbar.css" />
+  <link rel="stylesheet" href="css/hero/hero-layout.css" />
+  <link rel="stylesheet" href="css/hero/hero-animations.css" />
+  <link rel="stylesheet" href="css/hero/hero-responsive.css" />
+  <link rel="stylesheet" href="css/about/about-layout.css" />
+  <link rel="stylesheet" href="css/about/about-responsive.css" />
+  <link rel="stylesheet" href="css/stellar-map/stellar-map-layout.css" />
+  <link rel="stylesheet" href="css/stellar-map/stellar-map-interactions.css" />
+  <link rel="stylesheet" href="css/stellar-map/stellar-map-responsive.css" />
+  <link rel="stylesheet" href="css/laboratory/laboratory-layout.css" />
+  <link rel="stylesheet" href="css/achievements/achievements-layout.css" />
+  <link rel="stylesheet" href="css/contact/contact-layout.css" />
+  <link rel="stylesheet" href="css/footer/footer-layout.css" />
+</head>
+<body>
+
+
+  <!-- ============================================================
+       NAVIGATION BAR
+       Fixed top bar — becomes opaque on scroll (.scrolled added by JS).
+       Hamburger opens the mobile drawer (.nav-menu.open).
+       ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <a href="#hero" class="nav-logo" aria-label="Chelsea Resada — home">
+        <span class="logo-monogram">CR</span>
+      </a>
+
+      <!-- Hamburger — visible on mobile only (CSS hides on desktop) -->
+      <button class="nav-toggle" id="navToggle"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#about"        class="nav-link">About</a></li>
+          <li><a href="#stellar-map"  class="nav-link">Constellation</a></li>
+          <li><a href="#laboratory"   class="nav-link">Laboratory</a></li>
+          <li><a href="#certificates" class="nav-link">Achievements</a></li>
+          <li><a href="#contact"      class="nav-link nav-link--cta">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO SECTION
+       Full-viewport editorial layout with parallax Starry Night
+       background, giant name, center panel, and lower stats strip.
+       ============================================================ -->
+  <section class="hero" id="hero" aria-label="Introduction">
+
+    <!-- Atmospheric overlays (decorative, no interaction) -->
+    <div class="hero-grain"              aria-hidden="true"></div>
+    <div class="hero-atmo hero-atmo--rose"  aria-hidden="true"></div>
+    <div class="hero-atmo hero-atmo--cream" aria-hidden="true"></div>
+
+    <!-- Thin editorial column lines -->
+    <div class="hero-ruled-lines" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Top meta bar: course · degree · country labels -->
+    <div class="hero-meta-bar" aria-label="Portfolio metadata">
+      <span class="hero-meta-bar__tag">✦ &nbsp; Digital Portfolio</span>
+      <span class="hero-meta-bar__center">BSIT &nbsp;·&nbsp; Information Technology &nbsp;·&nbsp; Philippines</span>
+      <span class="hero-meta-bar__tag">Since 2025</span>
+    </div>
+
+    <!-- Main type layer: giant name + floating center panel -->
+    <div class="hero-type-layer">
+
+      <!-- Giant name — two rows spanning the full viewport width -->
+      <h1 class="hero-giant-name" aria-label="Chelsea Resada">
+        <span class="hero-giant-name__row hero-giant-name__row--first">Chelsea</span>
+        <span class="hero-giant-name__row hero-giant-name__row--last">Resada</span>
+      </h1>
+
+      <!-- Center intro panel — frosted glass card over the name -->
+      <div class="hero-center-panel" role="region" aria-label="Introduction">
+
+        <!-- Corner bracket ornaments -->
+        <div class="hero-panel-corner hero-panel-corner--tl" aria-hidden="true"></div>
+        <div class="hero-panel-corner hero-panel-corner--tr" aria-hidden="true"></div>
+        <div class="hero-panel-corner hero-panel-corner--bl" aria-hidden="true"></div>
+        <div class="hero-panel-corner hero-panel-corner--br" aria-hidden="true"></div>
+
+        <!-- Mobile-only name lockup (hidden on desktop via CSS) -->
+        <div class="hero-mobile-name" aria-hidden="true">
+          <span class="hero-mobile-name__first">Chelsea</span>
+          <span class="hero-mobile-name__last">Resada</span>
+        </div>
+
+        <span class="hero-center-panel__ornament" aria-hidden="true">✦</span>
+
+        <p class="hero-center-panel__role">
+          Bachelor of Science in Information Technology
+        </p>
+
+        <div class="hero-center-panel__rule" aria-hidden="true"></div>
+
+        <p class="hero-center-panel__intro">
+          Aspiring IT professional passionate about crafting elegant
+          solutions through code, design, and creative thinking.
+          Welcome to my digital folio.
+        </p>
+
+        <blockquote class="hero-center-panel__quote">
+          "Somewhere in the universe,<br>a line of code is becoming art."
+        </blockquote>
+
+        <div class="hero-cta-row">
+          <a href="#about" class="btn btn--primary">About Me →</a>
+        </div>
+
+      </div>
+
+      <!-- Decorative floating geometric shapes (pure CSS) -->
+      <div class="hero-deco hero-deco--ring-lg"      aria-hidden="true"></div>
+      <div class="hero-deco hero-deco--ring-sm"      aria-hidden="true"></div>
+      <div class="hero-deco hero-deco--dot-cluster"  aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="hero-deco hero-deco--cross"        aria-hidden="true">
+        <span class="h"></span><span class="v"></span>
+      </div>
+
+    </div>
+
+
+    <!-- Lower strip: folio label | stat pills | collection card -->
+    <div class="hero-lower" aria-label="Portfolio statistics">
+
+      <!-- Left: folio eyebrow label -->
+      <div class="hero-lower__intro">
+        <p class="hero-folio-eyebrow">
+          <span class="hero-folio-eyebrow__num">№ 01</span>
+          <span class="hero-folio-eyebrow__line" aria-hidden="true"></span>
+          <span class="hero-folio-eyebrow__text">Creative Portfolio — 2025</span>
+        </p>
+        <p class="hero-folio-desc">Where are you at? &nbsp;·&nbsp; —my limit</p>
+      </div>
+
+      <!-- Center: three stat pills -->
+      <div class="hero-lower__stats">
+        <div class="hero-stat-pill">
+          <span class="hero-stat-pill__num">1</span>
+          <span class="hero-stat-pill__label">Project</span>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-pill__num">2</span>
+          <span class="hero-stat-pill__label">Years</span>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-pill__num">∞</span>
+          <span class="hero-stat-pill__label">Curiosity</span>
+        </div>
+      </div>
+
+      <!-- Right: "My Skills" collection card -->
+      <div class="hero-collection-card">
+        <div class="hero-collection-card__frame">
+          <div class="hero-collection-card__ph">
+            <img src="images/hero/card.jpg"
+                 alt="My Skills collection"
+                 class="hero-collection-card__img" />
+          </div>
+        </div>
+        <div class="hero-collection-card__body">
+          <p class="hero-collection-card__title">My <br>Skills</p>
+          <a href="#stellar-map" class="hero-collection-card__link">
+            View All <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bouncing scroll indicator -->
+    <div class="hero-scroll-cue" aria-hidden="true">
+      <span class="hero-scroll-cue__num">↓</span>
+      <span class="hero-scroll-cue__label">Scroll</span>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT SECTION — Editorial split panel
+       Left  = full-height GIF/image with name identity overlay
+       Right = parchment bio + education timeline
+       ============================================================ -->
+  <section class="about" id="about" aria-label="About Chelsea Resada">
+
+    <div class="am-split">
+
+      <!-- Left: image panel with overlay text -->
+      <div class="am-left-panel">
+
+        <div class="am-left-panel__overlay" aria-hidden="true"></div>
+
+        <!--
+          Profile GIF — onerror falls back to the placeholder below.
+          Place chelsea-about.gif in images/about/.
+        -->
+        <img
+          src="images/about/chelsea-about.gif"
+          alt="Chelsea Resada"
+          class="am-left-panel__gif"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+
+        <!-- Placeholder: shown when GIF is missing -->
+        <div class="am-left-panel__placeholder" style="display:none;" aria-hidden="true">
+          <span class="am-left-panel__placeholder-icon">✦</span>
+          <span class="am-left-panel__placeholder-text">chelsea-about.gif</span>
+          <span class="am-left-panel__placeholder-hint">Place your gif in images/about/</span>
+        </div>
+
+        <div class="am-left-panel__ruled" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+        <!-- Identity strip: name + status badge -->
+        <div class="am-left-panel__identity">
+          <span class="am-left-panel__eyebrow">✦ &nbsp; About Me</span>
+          <h2 class="am-left-panel__name">Chelsea<br><em>Resada</em></h2>
+          <div class="am-left-panel__badge">
+            <span class="am-left-panel__badge-dot" aria-hidden="true"></span>
+            IT Student &amp; Developer
+          </div>
+        </div>
+
+        <!-- Corner bracket ornaments -->
+        <div class="am-left-panel__corner am-left-panel__corner--tl" aria-hidden="true"></div>
+        <div class="am-left-panel__corner am-left-panel__corner--tr" aria-hidden="true"></div>
+        <div class="am-left-panel__corner am-left-panel__corner--bl" aria-hidden="true"></div>
+        <div class="am-left-panel__corner am-left-panel__corner--br" aria-hidden="true"></div>
+
+      </div>
+
+      <!-- Right: editorial bio + timeline + CTA -->
+      <div class="am-right-panel">
+
+        <!-- Atmospheric decoration layers -->
+        <div class="am-right-panel__grain"               aria-hidden="true"></div>
+        <div class="am-right-panel__atmo am-right-panel__atmo--rose" aria-hidden="true"></div>
+        <div class="am-right-panel__atmo am-right-panel__atmo--cool" aria-hidden="true"></div>
+        <div class="am-right-panel__ruled"               aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="am-right-panel__inner">
+
+          <!-- "Who I Am" eyebrow with flanking rules -->
+          <div class="am-right-eyebrow" data-reveal>
+            <span class="am-right-eyebrow__line" aria-hidden="true"></span>
+            <span class="am-right-eyebrow__text">Who I Am</span>
+            <span class="am-right-eyebrow__line" aria-hidden="true"></span>
+          </div>
+
+          <!-- Heading + profile photo side by side -->
+          <div class="am-right-heading" data-reveal data-reveal-delay="80">
+            <h3 class="am-right-heading__main">
+              Building solutions<br>through<br><em>code &amp; design</em>
+            </h3>
+            <div class="am-right-heading__pfp-wrap">
+              <img src="images/about/myphoto.jpg"
+                   alt="Chelsea Resada profile photo"
+                   class="am-right-heading__pfp" />
+            </div>
+            <div class="am-right-heading__rule" aria-hidden="true"></div>
+          </div>
+
+          <!-- Bio paragraphs -->
+          <div class="am-right-bio" data-reveal data-reveal-delay="160">
+            <p class="am-right-bio__lead">
+              I am a BSIT student focused on developing practical skills in
+              technology, design, and software development — driven by a
+              commitment to building clean, functional, and user-centered solutions.
+            </p>
+            <p class="am-right-bio__body">
+              My academic and personal projects span web development, programming,
+              and digital design. I approach each one with attention to detail,
+              a focus on usability, and a drive to continuously improve my craft.
+            </p>
+          </div>
+
+          <!-- Education timeline -->
+          <div class="am-right-edu" data-reveal data-reveal-delay="240">
+            <span class="am-right-edu__label">Education</span>
+
+            <div class="am-right-edu__item">
+              <div class="am-right-edu__beam"  aria-hidden="true"></div>
+              <div class="am-right-edu__dot"   aria-hidden="true"><span></span></div>
+              <div class="am-right-edu__text">
+                <span class="am-right-edu__year">2024 – Present</span>
+                <strong class="am-right-edu__degree">BS Information Technology</strong>
+                <span class="am-right-edu__school">National University – Clark</span>
+                <span class="am-right-edu__honors">Dean's Lister · PR Officer, BSIT Org.</span>
+              </div>
+            </div>
+
+            <div class="am-right-edu__item">
+              <div class="am-right-edu__beam"  aria-hidden="true"></div>
+              <div class="am-right-edu__dot"   aria-hidden="true"><span></span></div>
+              <div class="am-right-edu__text">
+                <span class="am-right-edu__year">2022 – 2024</span>
+                <strong class="am-right-edu__degree">Senior High School — ICT Track</strong>
+                <span class="am-right-edu__school">Children of Fatima School Inc. – Mabiga</span>
+                <span class="am-right-edu__honors">With Honors, Academic Years 2022–2024</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA button -->
+          <div class="am-right-cta" data-reveal data-reveal-delay="320">
+            <a href="#contact" class="btn btn--primary">Let's Connect →</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       STELLAR MAP — Interactive skill constellation
+       Each .stellar-node is a clickable hotspot positioned via
+       CSS custom properties --nx (left %) and --ny (top %).
+       JS (js/stellar-map/stellar-map-interactions.js) adds
+       .is-open to reveal the popup card above each node.
+       ============================================================ -->
+  <section class="stellar-map" id="stellar-map" aria-label="Skills constellation map">
+
+    <!-- Section header -->
+    <div class="stellar-map__header" data-reveal>
+      <span class="section-label">Navigate My Universe</span>
+      <h2 class="section-title stellar-map__title">Skills</h2>
+      <div class="section-divider" aria-hidden="true"></div>
+      <!-- Desktop and mobile subtitles — CSS shows the right one -->
+      <p class="stellar-map__subtitle stellar-map__subtitle--desktop">Click the glowing stars to explore my skills and tools.</p>
+      <p class="stellar-map__subtitle stellar-map__subtitle--mobile">Tap the glowing stars to explore my skills and tools.</p>
+    </div>
+
+    <!-- The star map canvas — nodes are positioned inside this -->
+    <div class="stellar-map__stage" id="stellarStage" data-reveal data-reveal-delay="150">
+
+      <!-- Edge vignette overlay -->
+      <div class="stellar-map__vignette" aria-hidden="true"></div>
+
+      <!-- SVG constellation lines connecting the nodes -->
+      <svg class="stellar-map__lines"
+           viewBox="0 0 100 100"
+           preserveAspectRatio="none"
+           aria-hidden="true">
+        <line x1="32" y1="38" x2="50" y2="52" />
+        <line x1="50" y1="52" x2="50" y2="72" />
+        <line x1="50" y1="72" x2="35" y2="82" />
+        <line x1="35" y1="82" x2="18" y2="58" />
+        <line x1="18" y1="58" x2="32" y2="38" />
+        <line x1="32" y1="38" x2="68" y2="28" />
+        <line x1="68" y1="28" x2="82" y2="58" />
+        <line x1="82" y1="58" x2="50" y2="52" />
+      </svg>
+
+
+      <!-- ── Node 1: Code Foundations ── -->
+      <div class="stellar-node stellar-node--skill"
+           style="--nx: 32%; --ny: 38%;"
+           tabindex="0"
+           aria-label="Skill: Code Foundations — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Code Foundations</span>
+        <div class="stellar-node__popup" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Skill Cluster</div>
+          <h3 class="stellar-popup__title">Code Foundations</h3>
+          <p class="stellar-popup__sub">Core Languages &amp; Markup</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">☕</span>
+              <div><strong>Java</strong><span>Object-oriented logic, algorithms &amp; structured problem-solving</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">⚡</span>
+              <div><strong>JavaScript</strong><span>DOM manipulation, interactivity &amp; dynamic web behaviour</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🏗️</span>
+              <div><strong>HTML5</strong><span>Semantic markup, accessible document structure</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🎨</span>
+              <div><strong>CSS3</strong><span>Layouts, animations &amp; responsive design</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 2: VS Code Forge ── -->
+      <div class="stellar-node stellar-node--skill"
+           style="--nx: 50%; --ny: 52%;"
+           tabindex="0"
+           aria-label="Skill: VS Code Forge — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">VS Code Forge</span>
+        <div class="stellar-node__popup" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Primary Tool</div>
+          <h3 class="stellar-popup__title">VS Code Forge</h3>
+          <p class="stellar-popup__sub">Development Environment Mastery</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">🛠️</span>
+              <div><strong>Visual Studio Code</strong><span>My primary coding environment for all projects and coursework</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🔌</span>
+              <div><strong>Extensions &amp; Workflow</strong><span>Live Server, Prettier, GitLens &amp; custom snippets for speed</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🔗</span>
+              <div><strong>Version Control</strong><span>Git integration directly within the editor — commit, push, pull</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 3: Collaborative Spirit ── -->
+      <div class="stellar-node stellar-node--skill stellar-node--soft"
+           style="--nx: 50%; --ny: 72%;"
+           tabindex="0"
+           aria-label="Skill: Collaborative Spirit — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Collaborative Spirit</span>
+        <div class="stellar-node__popup" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Soft Skill</div>
+          <h3 class="stellar-popup__title">Collaborative Spirit</h3>
+          <p class="stellar-popup__sub">Team Player &amp; Communicator</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">🤝</span>
+              <div><strong>Team-First Mindset</strong><span>Comfortable contributing in group projects, hackathons &amp; pair work</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">💬</span>
+              <div><strong>Clear Communication</strong><span>Translating technical ideas into language everyone can understand</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🔄</span>
+              <div><strong>Adaptability</strong><span>Open to feedback, quick to adjust, and always eager to improve</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 4: Content Craft ── -->
+      <div class="stellar-node stellar-node--skill"
+           style="--nx: 18%; --ny: 58%;"
+           tabindex="0"
+           aria-label="Skill: Content Craft — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Content Craft</span>
+        <div class="stellar-node__popup" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Skill Cluster</div>
+          <h3 class="stellar-popup__title">Content Craft</h3>
+          <p class="stellar-popup__sub">Digital Content &amp; Remote Work</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">✍️</span>
+              <div><strong>High-Volume Publishing</strong><span>Published 200+ posts daily during SHS immersion — precision at scale</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🌐</span>
+              <div><strong>Digital Communication</strong><span>Professional async communication within distributed, remote-first teams</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">📁</span>
+              <div><strong>Content Management</strong><span>Organizing, scheduling, and delivering digital content on tight timelines</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 5: Digital Presence ── -->
+      <div class="stellar-node stellar-node--skill stellar-node--soft"
+           style="--nx: 82%; --ny: 58%;"
+           tabindex="0"
+           aria-label="Skill: Digital Presence — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Digital Presence</span>
+        <div class="stellar-node__popup stellar-node__popup--left" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Skill Cluster</div>
+          <h3 class="stellar-popup__title">Digital Presence</h3>
+          <p class="stellar-popup__sub">Marketing &amp; Social Media Operations</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">📣</span>
+              <div><strong>Product Promotion</strong><span>Hands-on experience promoting products through digital and face-to-face channels</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">📊</span>
+              <div><strong>Campaign Familiarity</strong><span>Understanding of marketing campaign structure and lead-generation tactics</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">📱</span>
+              <div><strong>Social Media Operations</strong><span>Managing content pipelines and audience engagement across online platforms</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 6: Leadership Orbit ── -->
+      <div class="stellar-node stellar-node--skill stellar-node--soft"
+           style="--nx: 35%; --ny: 82%;"
+           tabindex="0"
+           aria-label="Skill: Leadership Orbit — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Leadership Orbit</span>
+        <div class="stellar-node__popup" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Soft Skill</div>
+          <h3 class="stellar-popup__title">Leadership Orbit</h3>
+          <p class="stellar-popup__sub">Organizational Role &amp; Academic Excellence</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">📢</span>
+              <div><strong>Public Relations Officer</strong><span>Elected PRO of the BSIT Department Organization at NU Clark, 2024–2025</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🏅</span>
+              <div><strong>Dean's Lister</strong><span>Consistently on the Dean's List since entering college in 2024</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🎖️</span>
+              <div><strong>With Honors — SHS</strong><span>Graduated with honors from Children of Fatima School, ICT track, 2022–2024</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- ── Node 7: Design Studio ── -->
+      <div class="stellar-node stellar-node--skill"
+           style="--nx: 68%; --ny: 28%;"
+           tabindex="0"
+           aria-label="Skill: Design Studio — click to expand">
+        <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
+        <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
+        <div class="stellar-node__glyph" aria-hidden="true">✦</div>
+        <span class="stellar-node__tag">Design Studio</span>
+        <div class="stellar-node__popup stellar-node__popup--left" role="tooltip">
+          <div class="stellar-popup__corner stellar-popup__corner--tl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--tr" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--bl" aria-hidden="true"></div>
+          <div class="stellar-popup__corner stellar-popup__corner--br" aria-hidden="true"></div>
+          <div class="stellar-popup__type-badge">Skill Cluster</div>
+          <h3 class="stellar-popup__title">Design Studio</h3>
+          <p class="stellar-popup__sub">UI/UX &amp; Visual Design</p>
+          <ul class="stellar-popup__list">
+            <li>
+              <span class="stellar-popup__item-icon">🎨</span>
+              <div><strong>Figma</strong><span>Wireframes, prototypes &amp; component-based UI design</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">🖼️</span>
+              <div><strong>Canva</strong><span>Graphic design for presentations, social media &amp; visual content</span></div>
+            </li>
+            <li>
+              <span class="stellar-popup__item-icon">✏️</span>
+              <div><strong>UI Principles</strong><span>Layout, typography, colour theory &amp; user-centered design thinking</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Legend -->
+    <div class="stellar-map__legend" aria-label="Map legend">
+      <span class="stellar-legend__item stellar-legend__item--skill">
+        <span class="stellar-legend__glyph">✦</span> Skill Cluster
+      </span>
+    </div>
+
+    <!-- Mobile skill cards (hidden on desktop, shown on mobile via CSS) -->
+    <div class="stellar-mobile-grid" aria-label="Skills overview">
+
+      <div class="stellar-mob-card">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">☕⚡🏗️🎨</span>
+          <div>
+            <span class="stellar-mob-card__badge">Skill Cluster</span>
+            <h3 class="stellar-mob-card__title">Code Foundations</h3>
+            <p class="stellar-mob-card__sub">Core Languages &amp; Markup</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Java</strong> — OOP, algorithms &amp; problem-solving</li>
+          <li><strong>JavaScript</strong> — DOM manipulation &amp; interactivity</li>
+          <li><strong>HTML5</strong> — Semantic &amp; accessible markup</li>
+          <li><strong>CSS3</strong> — Layouts, animations &amp; responsive design</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">🛠️🔌🔗</span>
+          <div>
+            <span class="stellar-mob-card__badge">Primary Tool</span>
+            <h3 class="stellar-mob-card__title">VS Code Forge</h3>
+            <p class="stellar-mob-card__sub">Development Environment</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Visual Studio Code</strong> — Primary coding environment</li>
+          <li><strong>Extensions</strong> — Live Server, Prettier, GitLens</li>
+          <li><strong>Version Control</strong> — Git integration &amp; workflow</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card stellar-mob-card--soft">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">🤝💬🔄</span>
+          <div>
+            <span class="stellar-mob-card__badge stellar-mob-card__badge--soft">Soft Skill</span>
+            <h3 class="stellar-mob-card__title">Collaborative Spirit</h3>
+            <p class="stellar-mob-card__sub">Team Player &amp; Communicator</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Team-First Mindset</strong> — Group projects &amp; pair work</li>
+          <li><strong>Clear Communication</strong> — Technical to plain language</li>
+          <li><strong>Adaptability</strong> — Open to feedback, quick to adjust</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">✍️📹🎙️</span>
+          <div>
+            <span class="stellar-mob-card__badge">Skill Cluster</span>
+            <h3 class="stellar-mob-card__title">Content Craft</h3>
+            <p class="stellar-mob-card__sub">Digital Content &amp; Remote Work</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Content Writing</strong> — Articles, scripts &amp; captions</li>
+          <li><strong>Video Editing</strong> — Short-form &amp; presentation content</li>
+          <li><strong>Remote Freelancing</strong> — Self-managed digital delivery</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">📣📊📱</span>
+          <div>
+            <span class="stellar-mob-card__badge">Skill Cluster</span>
+            <h3 class="stellar-mob-card__title">Digital Presence</h3>
+            <p class="stellar-mob-card__sub">Marketing &amp; Social Media</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Product Promotion</strong> — Digital &amp; face-to-face channels</li>
+          <li><strong>Campaign Familiarity</strong> — Structure &amp; lead generation</li>
+          <li><strong>Social Media Ops</strong> — Content pipelines &amp; engagement</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card stellar-mob-card--soft">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">📢🏅🎖️</span>
+          <div>
+            <span class="stellar-mob-card__badge stellar-mob-card__badge--soft">Soft Skill</span>
+            <h3 class="stellar-mob-card__title">Leadership Orbit</h3>
+            <p class="stellar-mob-card__sub">Organizational Role &amp; Honors</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>PR Officer</strong> — BSIT Org, NU Clark 2024–2025</li>
+          <li><strong>Dean's Lister</strong> — Consistently since 2024</li>
+          <li><strong>With Honors</strong> — SHS ICT Track, 2022–2024</li>
+        </ul>
+      </div>
+
+      <div class="stellar-mob-card">
+        <div class="stellar-mob-card__head">
+          <span class="stellar-mob-card__icon">🎨🖼️✏️</span>
+          <div>
+            <span class="stellar-mob-card__badge">Skill Cluster</span>
+            <h3 class="stellar-mob-card__title">Design Studio</h3>
+            <p class="stellar-mob-card__sub">UI/UX &amp; Visual Design</p>
+          </div>
+        </div>
+        <ul class="stellar-mob-card__list">
+          <li><strong>Figma</strong> — Wireframes &amp; component UI design</li>
+          <li><strong>Canva</strong> — Graphics, presentations &amp; social content</li>
+          <li><strong>UI Principles</strong> — Layout, typography &amp; colour theory</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       LABORATORY — Academic activities and coursework
+       Filter tabs (All / Midterm / Finals) and 4-per-page pagination
+       are handled by js/laboratory/laboratory-filter.js.
+       Each card carries data-period="midterm|finals" for filtering.
+       ============================================================ -->
+  <section class="laboratory" id="laboratory" aria-label="Laboratory activities">
+    <div class="section-container">
+
+      <div class="section-header" data-reveal>
+        <span class="section-label">Academic Record</span>
+        <h2 class="section-title">Activities &amp; Works</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-subtitle">
+          A curated collection of laboratory exercises, practical activities,
+          and coursework from my studies.
+        </p>
+      </div>
+
+      <!-- Period filter tabs -->
+      <div class="lab-filter-tabs"
+           role="tablist"
+           aria-label="Filter by exam period"
+           data-reveal data-reveal-delay="100">
+        <button class="lab-filter-tab is-active" data-period-filter="all"     role="tab" aria-selected="true">All</button>
+        <button class="lab-filter-tab"            data-period-filter="midterm" role="tab" aria-selected="false">Midterm</button>
+        <button class="lab-filter-tab"            data-period-filter="finals"  role="tab" aria-selected="false">Finals</button>
+      </div>
+
+      <div class="lab-grid">
+
+        <!-- ── Midterm Lab 01 ── -->
+        <div class="lab-card" data-period="midterm">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">I</span>
+            <div class="lab-card__badge">Midterm Lab 01</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL — Web Development</p>
+            <h3 class="lab-card__title">Lab Activity #1 — Song Lyrics</h3>
+            <p class="lab-card__desc">
+              Marking up song lyrics using proper HTML structure — practicing nesting,
+              line breaks, and text formatting to present content cleanly on the web.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2025</span>
+              <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity1.html"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Midterm Lab 02 ── -->
+        <div class="lab-card" data-period="midterm">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">II</span>
+            <div class="lab-card__badge">Midterm Lab 02</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL — Web Development</p>
+            <h3 class="lab-card__title">Lab Activity #2 — Resume</h3>
+            <p class="lab-card__desc">
+              Building a personal resume in HTML — structuring real-world content with
+              headings, lists, and semantic markup to create a readable, well-organized page.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2025</span>
+              <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity2.html"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Midterm Lab 03 ── -->
+        <div class="lab-card" data-period="midterm">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">III</span>
+            <div class="lab-card__badge">Midterm Lab 03</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL — Web Development</p>
+            <h3 class="lab-card__title">Lab Activity #3 — Lists</h3>
+            <p class="lab-card__desc">
+              Exploring ordered, unordered, and nested lists in HTML — understanding how
+              to organize and present information hierarchically on a webpage.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2025</span>
+              <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity3-Resada.html"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Midterm Lab 04 ── -->
+        <div class="lab-card" data-period="midterm">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">IV</span>
+            <div class="lab-card__badge">Midterm Lab 04</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL — Web Development</p>
+            <h3 class="lab-card__title">Lab Activity #4 — HTML Image Map</h3>
+            <p class="lab-card__desc">
+              Creating an interactive image map using HTML — defining clickable regions
+              on an image to link different areas to different destinations.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2025</span>
+              <a href="https://jovial-griffin-13640c.netlify.app/"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Finals Lab 01 ── -->
+        <div class="lab-card" data-period="finals">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">I</span>
+            <div class="lab-card__badge">Finals Lab 01</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL_ITE202 — Web Development</p>
+            <h3 class="lab-card__title">Home Activity 1 — CodeChum CSS</h3>
+            <p class="lab-card__desc">
+              A series of CSS exercises on CodeChum covering Lesson 2: Styling Web Pages
+              with CSS — topics include CSS Selectors, Box Model, Layout, and Text Styling.
+              All activities scored 10/10 or 20/20.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2026</span>
+              <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Finals Lab 02 ── -->
+        <div class="lab-card" data-period="finals">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">II</span>
+            <div class="lab-card__badge">Finals Lab 02</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL_ITE202 — Web Development</p>
+            <h3 class="lab-card__title">Finals Lab Activity #1 — NU Quest</h3>
+            <p class="lab-card__desc">
+              A web-based activity built and deployed as part of the finals laboratory
+              requirements — applying HTML, CSS, and web development concepts covered
+              throughout the course.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2026</span>
+              <a href="https://nuquestactivity1.infinityfree.me/?i=2"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Finals Lab 03 ── -->
+        <div class="lab-card" data-period="finals">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">III</span>
+            <div class="lab-card__badge">Finals Lab 03</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL_ITE202 — Web Development</p>
+            <h3 class="lab-card__title">GMetrix Practice Exam #1 &amp; #2</h3>
+            <p class="lab-card__desc">
+              Completed two GMetrix practice exams as part of finals preparation —
+              simulating certification-style testing to assess and reinforce web
+              development knowledge and skills.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 2026</span>
+              <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Finals Lab 04 ── -->
+        <div class="lab-card" data-period="finals">
+          <div class="lab-card__image">
+            <span class="lab-card__image-num">IV</span>
+            <div class="lab-card__badge">Finals Lab 04</div>
+          </div>
+          <div class="lab-card__body">
+            <p class="lab-card__subject">CTWBDEVL_ITE202 — Web Development</p>
+            <h3 class="lab-card__title">Async Class (Apr 20, 2026) — CodeChum Activities</h3>
+            <p class="lab-card__desc">
+              CodeChum activities completed during the asynchronous class session —
+              applying web development concepts covered throughout the finals period.
+            </p>
+            <div class="lab-card__footer">
+              <span class="lab-card__date">📅 April 20, 2026</span>
+              <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
+                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination — hidden by JS when all cards fit on one page -->
+      <div class="lab-pagination" id="labPagination" aria-label="Activity page navigation">
+        <button class="lab-pagination__btn" id="labPrevBtn"
+                aria-label="Previous page" disabled>← Prev</button>
+        <span class="lab-pagination__counter" id="labPageCounter"
+              aria-live="polite">Page 1</span>
+        <button class="lab-pagination__btn" id="labNextBtn"
+                aria-label="Next page">Next →</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ACHIEVEMENTS — Certificates and academic milestones
+       Frosted glass plaque cards on a parallax Starry Night background.
+       ============================================================ -->
+  <section class="achievements" id="certificates" aria-label="Certificates and achievements">
+
+    <div class="achv-glow achv-glow--a" aria-hidden="true"></div>
+    <div class="achv-glow achv-glow--b" aria-hidden="true"></div>
+
+    <div class="section-container">
+
+      <div class="section-header" data-reveal>
+        <span class="section-label">Recognition &amp; Growth</span>
+        <h2 class="section-title">Certificates &amp; Achievements</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-subtitle">
+          Milestones charted across the constellation of my academic journey.
+        </p>
+      </div>
+
+      <div class="achv-grid">
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="0">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">I</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">📝</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">MOS: Microsoft Word (Office 2019)</h3>
+            <p class="achv-plaque__issuer">Microsoft Office Specialist</p>
+            <p class="achv-plaque__date">3/16/2026</p>
+          </div>
+          <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQCr4WMIhTBeS621jc-1VL7jATjQHEsLiBHQ1l7TjG7QEzE?e=ZGDy47"
+             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="100">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">II</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">📊</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">MOS: Microsoft Excel (Microsoft 365 Apps)</h3>
+            <p class="achv-plaque__issuer">Microsoft Office Specialist</p>
+            <p class="achv-plaque__date">10/8/2025</p>
+          </div>
+          <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQBNpCvFK-7OSpK7Yzx4JiErAdex1HBQoMkH6HSGEaXKhEY?e=yi16LB"
+             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="200">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">III</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">🗄️</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">IT Specialist: Databases</h3>
+            <p class="achv-plaque__issuer">Information Technology Specialist</p>
+            <p class="achv-plaque__date">2/4/2026</p>
+          </div>
+          <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQAKan-EPolLSpaiXNPbhyS_ASZnZhdECFarRROSp_KjtXM?e=YI3RQb"
+             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="300">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">IV</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">🖥️</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">CompTIA IT Fundamentals+</h3>
+            <p class="achv-plaque__issuer">CompTIA · Credential ID: COMP001022743794</p>
+            <p class="achv-plaque__date">2024 – 2025</p>
+          </div>
+          <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQAgRymUxB_KRYmUoNfIBdwuASCgQbZ4YZMpuZu01cUxKEs?e=9uArCa"
+             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="400">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">V</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">📱</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">Public Relations Officer</h3>
+            <p class="achv-plaque__issuer">BSIT Department Organization</p>
+            <p class="achv-plaque__date">2024 – 2025</p>
+          </div>
+        </article>
+
+        <article class="achv-plaque" data-reveal data-reveal-delay="500">
+          <div class="achv-plaque__corner achv-plaque__corner--tl" aria-hidden="true"></div>
+          <div class="achv-plaque__corner achv-plaque__corner--br" aria-hidden="true"></div>
+          <span class="achv-plaque__index" aria-hidden="true">VI</span>
+          <div class="achv-plaque__icon-wrap"><span class="achv-plaque__icon">🎓</span></div>
+          <div class="achv-plaque__body">
+            <h3 class="achv-plaque__title">Dean's List Awardee</h3>
+            <p class="achv-plaque__issuer">NU Clark</p>
+            <p class="achv-plaque__date">2024 – 2026 (Present)</p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT — Celestial invitation card
+       Left column: contact link rows.
+       Right column: Formspree form (submission handled in-page).
+       ============================================================ -->
+  <section class="contact" id="contact" aria-label="Contact Chelsea Resada">
+
+    <div class="contact-glow contact-glow--a" aria-hidden="true"></div>
+    <div class="contact-glow contact-glow--b" aria-hidden="true"></div>
+
+    <div class="section-container">
+
+      <div class="invite-card">
+
+        <!-- Corner bracket ornaments -->
+        <div class="invite-card__corner invite-card__corner--tl" aria-hidden="true"></div>
+        <div class="invite-card__corner invite-card__corner--tr" aria-hidden="true"></div>
+        <div class="invite-card__corner invite-card__corner--bl" aria-hidden="true"></div>
+        <div class="invite-card__corner invite-card__corner--br" aria-hidden="true"></div>
+
+        <div class="invite-card__top-ornament" aria-hidden="true">
+          <span class="invite-card__rule-line"></span>
+          <span class="invite-card__star">✦</span>
+          <span class="invite-card__rule-line"></span>
+        </div>
+
+        <div class="invite-card__header" data-reveal>
+          <p class="invite-card__eyebrow">A personal message awaits</p>
+          <h2 class="invite-card__title">Reach Across the Stars</h2>
+          <p class="invite-card__tagline">
+            Whether it's a collaboration, an inquiry, or simply a hello —<br>
+            my constellation is always open to new connections.
+          </p>
+        </div>
+
+        <div class="invite-card__divider" aria-hidden="true">
+          <span></span><i>· · ✦ · ·</i><span></span>
+        </div>
+
+        <div class="invite-card__body" data-reveal data-reveal-delay="150">
+
+          <!-- Left: contact link rows -->
+          <div class="invite-links">
+            <p class="invite-links__label">Find me at</p>
+            <ul class="invite-links__list">
+              <li>
+                <a href="mailto:Chelseakimresada@gmail.com" class="invite-link-row">
+                  <span class="invite-link-row__glyph" aria-hidden="true">✉</span>
+                  <span class="invite-link-row__text">
+                    <span class="invite-link-row__platform">Email</span>
+                    <span class="invite-link-row__handle">Chelseakimresada@gmail.com</span>
+                  </span>
+                  <span class="invite-link-row__arrow" aria-hidden="true">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="invite-card__col-divider" aria-hidden="true"></div>
+
+          <!-- Right: contact form (Formspree) -->
+          <div class="invite-form-side">
+            <form class="invite-form"
+                  id="contactForm"
+                  action="https://formspree.io/f/xvzyrzjq"
+                  method="POST">
+
+              <div class="invite-form__group">
+                <label for="inv-name" class="invite-form__label">Your Name</label>
+                <input type="text" id="inv-name" name="name"
+                       class="invite-form__input"
+                       placeholder="Juan dela Cruz" required />
+              </div>
+
+              <div class="invite-form__group">
+                <label for="inv-email" class="invite-form__label">Email Address</label>
+                <input type="email" id="inv-email" name="email"
+                       class="invite-form__input"
+                       placeholder="you@example.com" required />
+              </div>
+
+              <div class="invite-form__group">
+                <label for="inv-subject" class="invite-form__label">Subject</label>
+                <input type="text" id="inv-subject" name="subject"
+                       class="invite-form__input"
+                       placeholder="A Celestial Collaboration" />
+              </div>
+
+              <div class="invite-form__group">
+                <label for="inv-message" class="invite-form__label">Your Message</label>
+                <textarea id="inv-message" name="message"
+                          class="invite-form__textarea"
+                          rows="4"
+                          placeholder="Write your message here…" required></textarea>
+              </div>
+
+              <button type="submit" class="invite-form__submit" id="contactSubmitBtn">
+                <span id="contactBtnText">Send Message</span>
+                <span class="invite-form__submit-icon" aria-hidden="true">✦</span>
+              </button>
+
+              <!-- Status messages — shown/hidden by js/contact/contact-form.js -->
+              <p class="invite-form__status-success" id="contactSuccess">
+                ✦ Message received — I'll reach back across the stars soon.
+              </p>
+              <p class="invite-form__status-error" id="contactError">
+                Something went wrong. Please try again or email me directly.
+              </p>
+
+            </form>
+          </div>
+
+        </div>
+
+        <div class="invite-card__bottom-ornament" aria-hidden="true">
+          <span class="invite-card__rule-line"></span>
+          <span class="invite-card__seal">✦</span>
+          <span class="invite-card__rule-line"></span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       Three-column: brand | navigation | quote
+       ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+
+    <div class="footer-glow footer-glow--left"  aria-hidden="true"></div>
+    <div class="footer-glow footer-glow--right" aria-hidden="true"></div>
+
+    <div class="footer-container">
+
+      <div class="footer-ornament" aria-hidden="true">
+        <span class="footer-ornament__line"></span>
+        <span class="footer-ornament__star">✦</span>
+        <span class="footer-ornament__line"></span>
+      </div>
+
+      <div class="footer-top">
+
+        <div class="footer-brand" data-reveal>
+          <span class="footer-monogram">CR</span>
+          <p class="footer-name">Chelsea Resada</p>
+          <p class="footer-tagline">BSIT Student &amp; Aspiring Developer</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation" data-reveal data-reveal-delay="100">
+          <p class="footer-nav__heading">Navigate</p>
+          <ul class="footer-nav__list">
+            <li><a href="#hero"          class="footer-nav__link">Home</a></li>
+            <li><a href="#about"         class="footer-nav__link">About</a></li>
+            <li><a href="#stellar-map"   class="footer-nav__link">Constellation</a></li>
+            <li><a href="#laboratory"    class="footer-nav__link">Laboratory</a></li>
+            <li><a href="#certificates"  class="footer-nav__link">Achievements</a></li>
+            <li><a href="#contact"       class="footer-nav__link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-quote-col" data-reveal data-reveal-delay="200">
+          <blockquote class="footer-quote">
+            What are you doing?<br>:my best
+          </blockquote>
+          <p class="footer-quote__attr">— Chelsea Resada</p>
+        </div>
+
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-bottom" data-reveal data-reveal-delay="150">
+        <p class="footer-copy">&copy; 2026 Chelsea Resada. All rights reserved.</p>
+        <p class="footer-made">Crafted with care &amp; passion ✦</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- Scroll-to-top button — fades in after 400px scroll -->
+  <button class="scroll-top" id="scrollTop"
+          aria-label="Scroll to top"
+          title="Back to top">↑</button>
+
+
+  <!-- ============================================================
+       SCRIPTS — loaded at end of body so the DOM is ready.
+       ============================================================ -->
+  <script src="js/navigation/navbar.js"></script>
+  <script src="js/hero/hero-effects.js"></script>
+  <script src="js/stellar-map/stellar-map-interactions.js"></script>
+  <script src="js/laboratory/laboratory-filter.js"></script>
+  <script src="js/contact/contact-form.js"></script>
+  <script src="js/scroll/scroll-utilities.js"></script>
+
+</body>
+</html>

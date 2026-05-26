@@ -1,0 +1,79 @@
+/* ================================================================
+   STELLAR MAP — stellar-map-responsive.css
+   Media query overrides for the star map and mobile skill cards.
+   ================================================================ */
+
+/* ── Mobile: ≤ 768px ─────────────────────────────────────────────
+   The map stage stays visible but the aspect ratio changes to a taller
+   portrait orientation so the nodes aren't cramped.
+   Popups switch from absolute (above node) to fixed (bottom of screen).
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Taller aspect ratio — nodes have more room vertically */
+  .stellar-map__stage {
+    aspect-ratio: 1 / 1.1;
+    min-height: unset;
+    border-radius: var(--radius-md);
+    margin: 0 var(--container-pad);
+    width: auto;
+  }
+
+  /* Swap subtitle text to the mobile tap-friendly version */
+  .stellar-map__subtitle--desktop { display: none; }
+  .stellar-map__subtitle--mobile  { display: block; }
+
+  /* ── Popups ──────────────────────────────────────────────────
+     On mobile, popups render as bottom sheets anchored to the
+     screen bottom rather than floating above the tapped node.
+     This prevents them being clipped by the stage edges.
+     ─────────────────────────────────────────────────────────── */
+  .stellar-node__popup,
+  .stellar-node__popup--left {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%) scale(0.95);
+    transform-origin: bottom center;
+    width: min(320px, 90vw);
+    z-index: 1000;
+  }
+
+  .stellar-node.is-open .stellar-node__popup,
+  .stellar-node.is-open .stellar-node__popup--left {
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* Larger tap targets — ring and glyph sizes increase */
+  .stellar-node__ring--outer { width: 60px; height: 60px; }
+  .stellar-node__ring--inner { width: 36px; height: 36px; }
+  .stellar-node__glyph       { font-size: 1.4rem; }
+
+  /* Tag labels — hidden by default, shown only when open (less clutter) */
+  .stellar-node__tag               { display: none; }
+  .stellar-node.is-open .stellar-node__tag { display: block; }
+
+  /* Legend row — center-align on mobile */
+  .stellar-map__legend { justify-content: center; }
+
+  /* Mobile skill cards hidden — star map is kept visible on mobile */
+  .stellar-mobile-grid { display: none; }
+
+}
+
+
+/* ── Small mobile: ≤ 480px ───────────────────────────────────────
+   Narrower popup for very small screens.
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+  .stellar-node__popup {
+    width: min(220px, 92vw);
+    padding: 14px 12px 12px;
+  }
+
+  .stellar-popup__title { font-size: 0.95rem; }
+
+}

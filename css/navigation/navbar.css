@@ -1,0 +1,226 @@
+/* ================================================================
+   NAVIGATION — navbar.css
+   Fixed top bar with logo, nav links, and hamburger toggle.
+   The .scrolled class is applied by js/navigation/navbar.js
+   once the user scrolls past 60px.
+   ================================================================ */
+
+/* ── Base navbar ─────────────────────────────────────────────────
+   Semi-transparent by default. Uses backdrop-filter for frosted glass.
+   ─────────────────────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 0;
+  background: rgba(10, 21, 48, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-med);
+}
+
+/* More opaque + smaller once the user scrolls past the hero */
+.navbar.scrolled {
+  padding: 14px 0;
+  background: rgba(10, 21, 48, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Flex row: logo left, nav right */
+.nav-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Logo / Monogram ─────────────────────────────────────────────
+   The "CR" monogram is a bordered square that fills on hover.
+   ─────────────────────────────────────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.nav-logo:hover .logo-monogram {
+  background: var(--accent-primary);
+  color: var(--color-white);
+}
+
+/* ── Navigation links ────────────────────────────────────────────
+   Each link has an animated underline that expands from center.
+   ─────────────────────────────────────────────────────────────── */
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+/* Underline expands from the center of each link on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent-primary);
+  transform: translateX(-50%);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--accent-primary);
+}
+
+.nav-link:hover::after {
+  width: 60%;
+}
+
+/* ── CTA link — "Contact" ────────────────────────────────────────
+   Filled gold pill, no underline animation needed.
+   ─────────────────────────────────────────────────────────────── */
+.nav-link--cta {
+  background: var(--accent-primary);
+  color: var(--color-white) !important;
+  border-radius: var(--radius-sm);
+}
+
+.nav-link--cta::after {
+  display: none;
+}
+
+.nav-link--cta:hover {
+  background: var(--color-gold-deep);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+/* ── Hamburger Toggle ────────────────────────────────────────────
+   Hidden on desktop. Three bars animate to an X when the
+   .active class is added by js/navigation/mobile-menu.js.
+   ─────────────────────────────────────────────────────────────── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+/* Bar animations when menu is open (X shape) */
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ================================================================
+   NAV — RESPONSIVE (Mobile ≤ 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* Show hamburger, hide desktop nav */
+  .nav-toggle { display: flex; }
+
+  /* ── Mobile menu ─────────────────────────────────────────────
+     Full-width dropdown below the navbar. Hidden by default.
+     The .open class is toggled by js/navigation/mobile-menu.js.
+     ─────────────────────────────────────────────────────────── */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 21, 48, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-color);
+    padding: 16px 0;
+    z-index: 999;
+  }
+
+  /* .open is added by JS on hamburger click */
+  .nav-menu.open {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 var(--container-pad);
+  }
+
+  .nav-link {
+    display: block;
+    padding: 12px 4px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+  }
+
+  .nav-link::after { display: none; }
+
+  .nav-link--cta {
+    margin-top: 12px;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    padding: 12px 4px;
+    border-bottom: none;
+  }
+
+}
