@@ -1,0 +1,87 @@
+/* ================================================================
+   VARIABLES.CSS — Design Tokens & CSS Custom Properties
+   All color, spacing, font, shadow, and transition values live here.
+   Update once here and it propagates everywhere.
+   ================================================================ */
+
+:root {
+
+  /* ── Color Palette — "Starry Night" (Van Gogh) ──────────────────
+     Raw named colors. Use the semantic aliases below in components.
+     ─────────────────────────────────────────────────────────────── */
+  --color-white:       #ffffff;
+  --color-cream:       #e8e4c9;
+  --color-parchment:   #dde3ef;
+  --color-blush:       #c8d4e8;
+  --color-blush-mid:   #b8c8e0;
+  --color-rose:        #8fadd4;
+  --color-rose-mid:    #6b8fc2;
+  --color-terra:       #c9a84c;
+  --color-gold:        #e8c547;     /* primary accent — gold */
+  --color-gold-deep:   #d4a832;     /* darker gold for hover states */
+  --color-stone:       #7a9ec6;
+  --color-stone-mid:   #b0c4de;
+  --color-taupe:       #2e4a7a;
+  --color-teal:        #20c8b4;     /* active/online status indicator */
+
+  /* ── Semantic Colors ─────────────────────────────────────────────
+     Apply these in components — not raw palette names.
+     ─────────────────────────────────────────────────────────────── */
+  --bg-body:           #0d1b3e;     /* page background */
+  --bg-section-alt:    #09101f;     /* alternate section background */
+  --bg-dark:           #060e1f;     /* darkest sections */
+  --bg-card:           #111d3a;     /* card/surface background */
+
+  --text-primary:      #e8eef8;     /* headings and high-emphasis text */
+  --text-secondary:    #b0d3de;     /* body paragraphs */
+  --text-muted:        #7a9ec6;     /* captions, labels, metadata */
+  --text-light:        #dde8f5;     /* form inputs, lightly tinted white */
+
+  --accent-primary:    var(--color-gold);       /* gold — buttons, highlights */
+  --accent-secondary:  var(--color-rose-mid);   /* blue-rose — italic accents */
+  --accent-warm:       var(--color-terra);      /* warm caramel — link glyphs */
+  --accent-soft:       var(--color-stone);      /* muted blue — borders, rules */
+
+  --border-color:      #1e2d52;                 /* subtle border */
+  --border-accent:     var(--color-stone-mid);  /* highlighted border */
+
+  /* ── Spacing ─────────────────────────────────────────────────────
+     Padding inside each major section and container max-width.
+     ─────────────────────────────────────────────────────────────── */
+  --section-padding:   100px;
+  --container-max:     1200px;
+  --container-pad:     40px;
+
+  /* ── Font Families ───────────────────────────────────────────────
+     display  = Cinzel — ultra-formal, editorial labels & monograms
+     serif    = Cormorant Garamond — headings & names
+     body     = Lato — UI text, descriptions, form labels
+     ─────────────────────────────────────────────────────────────── */
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-serif:   'Cormorant Garamond', 'Georgia', serif;
+  --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── Shadows ─────────────────────────────────────────────────────
+     sm = subtle lift, md = card depth, lg = modal/overlay, card = default card
+     ─────────────────────────────────────────────────────────────── */
+  --shadow-sm:   0 2px 8px rgba(10, 22, 40, 0.10);
+  --shadow-md:   0 8px 24px rgba(10, 22, 40, 0.15);
+  --shadow-lg:   0 16px 48px rgba(10, 22, 40, 0.20);
+  --shadow-card: 0 4px 20px rgba(10, 22, 40, 0.12);
+
+  /* ── Border Radius ───────────────────────────────────────────────
+     Consistent rounding across buttons, cards, inputs, etc.
+     ─────────────────────────────────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* ── Transition Speeds ───────────────────────────────────────────
+     fast = hover micro-interactions, med = panel reveals, slow = parallax
+     ─────────────────────────────────────────────────────────────── */
+  --transition-fast: 0.2s ease;
+  --transition-med:  0.35s ease;
+  --transition-slow: 0.55s ease;
+
+}

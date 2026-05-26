@@ -1,0 +1,238 @@
+/* ================================================================
+   UTILITIES.CSS — Shared Helper Classes & Section Primitives
+   Includes: accessibility utilities, buttons, shared section
+   header structure (label, title, divider, subtitle).
+   ================================================================ */
+
+
+/* ── Accessibility ───────────────────────────────────────────────
+   .sr-only visually hides content while keeping it accessible
+   to screen readers and keyboard navigation.
+   ─────────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ================================================================
+   BUTTONS — .btn base + modifier classes
+   Usage: <a class="btn btn--primary">Label</a>
+   ================================================================ */
+
+/* Shared base: padding, font, text-transform, transition */
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-med);
+  cursor: pointer;
+}
+
+/* Primary — filled gold, used for main CTAs */
+.btn--primary {
+  background-color: var(--accent-primary);
+  color: var(--color-white);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 4px 16px rgba(219, 93, 81, 0.3);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-gold-deep);
+  border-color: var(--color-gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(219, 93, 81, 0.4);
+}
+
+/* Ghost — transparent with gold border, secondary CTAs */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.btn--ghost:hover {
+  background-color: var(--accent-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* Size modifier — compact variant for inline contexts */
+.btn--small {
+  padding: 9px 22px;
+  font-size: 0.78rem;
+}
+
+/* Width modifier — stretches to fill its container (contact form) */
+.btn--full {
+  width: 100%;
+  text-align: center;
+}
+
+
+/* ================================================================
+   SECTION SHARED — Layout primitives reused across all sections
+   ================================================================ */
+
+/* Centered content wrapper used inside most sections */
+.section-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--section-padding) var(--container-pad);
+}
+
+/* Centered block at the top of each section */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* Small all-caps label above the section title */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin-bottom: 10px;
+}
+
+/* Main section heading */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+/* ── Section divider ─────────────────────────────────────────────
+   A short gold gradient rule with a centered ✦ ornament.
+   The ::after pseudo-element draws the star over the line.
+   ─────────────────────────────────────────────────────────────── */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent-primary));
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-divider::after {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-primary);
+  font-size: 0.6rem;
+  /* White backing hides the line behind the star so it reads cleanly */
+  background: var(--bg-body);
+  padding: 0 6px;
+}
+
+/* Italic description below the section divider */
+.section-subtitle {
+  margin-top: 24px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+
+/* ================================================================
+   SCROLL-TO-TOP BUTTON
+   Fixed in the bottom-right corner. Opacity is toggled by
+   js/scroll/scroll-top.js once the user scrolls past 400px.
+   ================================================================ */
+
+.scroll-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 46px;
+  height: 46px;
+  background: var(--accent-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+
+  /* Hidden by default — JS sets opacity/pointer-events on scroll */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity var(--transition-med), transform var(--transition-med),
+              background var(--transition-fast);
+  z-index: 900;
+}
+
+.scroll-top:hover {
+  background: var(--color-gold-deep);
+  transform: translateY(-2px);
+}
+
+
+/* ================================================================
+   SCROLL-IN REVEAL ANIMATIONS — [data-reveal] attribute
+   Elements start hidden (opacity 0, offset down). When 15% of the
+   element enters the viewport, js/scroll/reveal.js adds .is-visible.
+   Optional [data-reveal-delay="ms"] staggers the transition.
+   ================================================================ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ================================================================
+   GLOBAL KEYFRAMES — shared across multiple sections
+   Section-specific keyframes live in their own CSS files.
+   ================================================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
