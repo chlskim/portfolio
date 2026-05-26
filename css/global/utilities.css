@@ -55,32 +55,6 @@
   box-shadow: 0 8px 24px rgba(219, 93, 81, 0.4);
 }
 
-/* Ghost — transparent with gold border, secondary CTAs */
-.btn--ghost {
-  background-color: transparent;
-  color: var(--accent-primary);
-  border: 2px solid var(--accent-primary);
-}
-
-.btn--ghost:hover {
-  background-color: var(--accent-primary);
-  color: var(--color-white);
-  transform: translateY(-2px);
-}
-
-/* Size modifier — compact variant for inline contexts */
-.btn--small {
-  padding: 9px 22px;
-  font-size: 0.78rem;
-}
-
-/* Width modifier — stretches to fill its container (contact form) */
-.btn--full {
-  width: 100%;
-  text-align: center;
-}
-
-
 /* ================================================================
    SECTION SHARED — Layout primitives reused across all sections
    ================================================================ */
@@ -187,7 +161,13 @@
   z-index: 900;
 }
 
-.scroll-top:hover {
+.scroll-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top.is-visible:hover {
   background: var(--color-gold-deep);
   transform: translateY(-2px);
 }

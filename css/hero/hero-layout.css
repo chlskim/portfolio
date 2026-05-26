@@ -13,6 +13,7 @@
    ─────────────────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@
   overflow: hidden;
   background-image:
     linear-gradient(rgba(46, 74, 122, 0.50), rgba(46, 74, 122, 0.25)),
-    url("../../images/backgrounds/starrynight.jpg");
+    url("../../images/backgrounds/starrynight-1600.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -260,6 +261,7 @@
   color: var(--text-muted);
   margin-bottom: 14px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 /* Short gradient rule that separates the role from the intro text */
@@ -276,6 +278,7 @@
   line-height: 1.78;
   color: var(--text-secondary);
   margin-bottom: 16px;
+  overflow-wrap: anywhere;
 }
 
 /* Left-bar quote — italic with a gold accent line on the left */
@@ -289,6 +292,7 @@
   text-align: left;
   line-height: 1.65;
   margin-bottom: 0;
+  overflow-wrap: anywhere;
 }
 
 /* CTA row containing the primary button */

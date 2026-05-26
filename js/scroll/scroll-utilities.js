@@ -25,20 +25,25 @@
   const scrollTopBtn = document.getElementById('scrollTop');
 
   if (scrollTopBtn) {
+    let ticking = false;
 
     /**
      * Shows or hides the scroll-top button based on scroll position.
      * The button becomes visible after 400px of vertical scroll.
      */
     function updateScrollTopVisibility() {
-      const isPast = window.scrollY > 400;
-      scrollTopBtn.style.opacity       = isPast ? '1' : '0';
-      scrollTopBtn.style.pointerEvents = isPast ? 'auto' : 'none';
-      scrollTopBtn.style.transform     = isPast ? 'translateY(0)' : 'translateY(16px)';
+      scrollTopBtn.classList.toggle('is-visible', window.scrollY > 400);
+      ticking = false;
+    }
+
+    function requestScrollTopVisibilityUpdate() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateScrollTopVisibility);
     }
 
     /* Listen for scroll — passive: true for performance (no preventDefault) */
-    window.addEventListener('scroll', updateScrollTopVisibility, { passive: true });
+    window.addEventListener('scroll', requestScrollTopVisibilityUpdate, { passive: true });
 
     /* Smooth-scroll to the very top when clicked */
     scrollTopBtn.addEventListener('click', () => {

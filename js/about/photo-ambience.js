@@ -30,6 +30,16 @@
   const panel = document.querySelector('.am-right-panel');
   if (!panel) return;
 
+  const profileImage = document.querySelector('.am-left-panel__gif');
+  const profileFallback = document.querySelector('.am-left-panel__placeholder');
+
+  if (profileImage && profileFallback) {
+    profileImage.addEventListener('error', () => {
+      profileImage.hidden = true;
+      profileFallback.hidden = false;
+    }, { once: true });
+  }
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
@@ -57,6 +67,9 @@
 
   const ctx = canvas.getContext('2d');
   let W = 0, H = 0;
+  let animationFrameId = 0;
+  let shouldAnimate = false;
+  let isRunning = false;
 
   function resize() {
     W = canvas.width  = panel.offsetWidth;
@@ -180,9 +193,48 @@
       ctx.fill();
     });
 
-    requestAnimationFrame(tick);
+    if (isRunning) {
+      animationFrameId = requestAnimationFrame(tick);
+    }
   }
 
-  tick();
+  function startAnimation() {
+    if (isRunning) return;
+    isRunning = true;
+    resize();
+    tick();
+  }
+
+  function stopAnimation() {
+    isRunning = false;
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  function syncAnimationState() {
+    if (shouldAnimate && !document.hidden) {
+      startAnimation();
+    } else {
+      stopAnimation();
+    }
+  }
+
+  if (prefersReduced) {
+    tick();
+    return;
+  }
+
+  if ('IntersectionObserver' in window) {
+    const panelObserver = new IntersectionObserver(([entry]) => {
+      shouldAnimate = entry.isIntersecting;
+      syncAnimationState();
+    }, { rootMargin: '120px 0px' });
+
+    panelObserver.observe(panel);
+  } else {
+    shouldAnimate = true;
+    syncAnimationState();
+  }
+
+  document.addEventListener('visibilitychange', syncAnimationState);
 
 })();

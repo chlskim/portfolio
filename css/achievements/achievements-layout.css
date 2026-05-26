@@ -13,7 +13,7 @@
   background-color: #0d1b3e;
   background-image:
     linear-gradient(rgba(10,18,45,0.62), rgba(10,18,45,0.62)),
-    url("../../images/backgrounds/starrynight.jpg");
+    url("../../images/backgrounds/starrynight-1600.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -265,11 +265,23 @@
    ACHIEVEMENTS — RESPONSIVE
    ================================================================ */
 
+@media (pointer: coarse) {
+
+  .achievements {
+    background-attachment: scroll;
+  }
+
+}
+
 /* ── Tablet: ≤ 1024px ────────────────────────────────────────────
    2-column explicit grid (auto-fill already handles this,
    but this enforces exactly 2 columns on mid-size screens).
    ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
+
+  .achievements {
+    background-attachment: scroll;
+  }
 
   .achv-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -284,6 +296,12 @@
    This keeps each card compact and scannable on a phone.
    ─────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
+  .achievements {
+    background-image:
+      linear-gradient(rgba(10,18,45,0.62), rgba(10,18,45,0.62)),
+      url("../../images/backgrounds/starrynight-960.jpg");
+  }
 
   .achv-grid {
     grid-template-columns: 1fr;
@@ -358,4 +376,14 @@
    ─────────────────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .achv-grid { gap: 10px; }
+
+  .achv-plaque {
+    flex-wrap: wrap;
+  }
+
+  .achv-plaque__link {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+  }
 }

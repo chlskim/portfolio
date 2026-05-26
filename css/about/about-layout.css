@@ -33,6 +33,12 @@
   align-items: flex-end;    /* pushes the identity strip to the bottom */
 }
 
+.am-left-panel picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 /* GIF fills the entire panel using object-fit: cover */
 .am-left-panel__gif {
   position: absolute;
@@ -78,7 +84,7 @@
 }
 
 /* ── Placeholder ─────────────────────────────────────────────────
-   Shown only when the GIF file is missing (via onerror handler).
+   Shown only when the GIF file is missing.
    Dashed border with instructions for where to place the file.
    ─────────────────────────────────────────────────────────────── */
 .am-left-panel__placeholder {
@@ -92,6 +98,10 @@
   gap: 10px;
   border: 1px dashed rgba(232, 197, 71, 0.25);
   margin: 24px;
+}
+
+.am-left-panel__placeholder[hidden] {
+  display: none;
 }
 
 .am-left-panel__placeholder-icon {
@@ -141,7 +151,7 @@
   color: var(--text-primary);
   line-height: 0.95;
   margin-bottom: 20px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 /* The last name in italics with a gold fill */

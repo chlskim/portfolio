@@ -7,6 +7,14 @@
 /* ── Tablet: ≤ 1024px ────────────────────────────────────────────
    Tighten padding, reduce font sizes slightly, shrink the collection card.
    ─────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px), (pointer: coarse) {
+
+  .hero {
+    background-attachment: scroll;
+  }
+
+}
+
 @media (max-width: 1024px) {
 
   .hero-meta-bar   { padding: 80px 32px 14px; }
@@ -35,6 +43,12 @@
    ─────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
 
+  .hero {
+    background-image:
+      linear-gradient(rgba(46, 74, 122, 0.50), rgba(46, 74, 122, 0.25)),
+      url("../../images/backgrounds/starrynight-960.jpg");
+  }
+
   /* Hide the large background name — too dominant at this size */
   .hero-giant-name { display: none; }
 
@@ -42,11 +56,18 @@
   .hero-center-panel {
     position: static;
     transform: none;
-    width: 100%;
-    max-width: 420px;
+    width: calc(100vw - 48px);
+    max-width: 360px;
     margin: 0 auto;
     padding: 28px 24px 24px;
     background: rgba(13, 27, 62, 0.85);
+    overflow: hidden;
+  }
+
+  .hero-center-panel__intro {
+    max-width: 28ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Show the mobile-only name inside the panel */
@@ -86,16 +107,27 @@
 
   /* Stats row — horizontal instead of vertical */
   .hero-lower__stats {
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
     padding: 18px 20px;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   }
 
+  .hero-stat-pill {
+    min-width: 0;
+  }
+
+  .hero-stat-pill__label {
+    font-size: clamp(0.42rem, 2.2vw, 0.54rem);
+    letter-spacing: 0.12em;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
   .hero-stat-sep {
-    width: 1px;
-    height: 32px;
+    display: none !important;
   }
 
   /* Collection card — hidden at mobile */
@@ -116,11 +148,13 @@
 @media (max-width: 480px) {
 
   .hero-center-panel         { padding: 20px 16px 18px; }
-  .hero-center-panel__intro  { font-size: 0.84rem; }
+  .hero-center-panel__role   { letter-spacing: 0.12em; }
+  .hero-center-panel__intro  { font-size: 0.84rem; max-width: 30ch; margin-left: auto; margin-right: auto; }
   .hero-center-panel__quote  { font-size: 0.78rem; }
 
   .hero-stat-pill__num   { font-size: 1.3rem; }
-  .hero-stat-pill__label { font-size: 0.46rem; }
+  .hero-stat-pill__label { font-size: 0.42rem; letter-spacing: 0.08em; }
   .hero-stat-pill        { padding: 5px 8px; }
+  .hero-lower__stats     { padding: 14px 10px; }
 
 }

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Chelsea Resada</title>
   <meta name="description" content="Digital portfolio of Chelsea Resada — BSIT student, aspiring developer, and creative thinker." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; connect-src 'self' https://formspree.io; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; form-action https://formspree.io; upgrade-insecure-requests" />
 
   <!--
     Google Fonts:
@@ -41,10 +43,10 @@
 
 
   <!-- ============================================================
-       NAVIGATION BAR
-       Fixed top bar — becomes opaque on scroll (.scrolled added by JS).
-       Hamburger opens the mobile drawer (.nav-menu.open).
-       ============================================================ -->
+      NAVIGATION BAR
+      Fixed top bar — becomes opaque on scroll (.scrolled added by JS).
+      Hamburger opens the mobile drawer (.nav-menu.open).
+      ============================================================ -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
 
@@ -79,9 +81,9 @@
           <li><a href="#certificates" class="nav-link">Achievements</a></li>
 
           <!-- ── Projects dropdown ───────────────────────────────────
-               Reveals a panel of external project links on hover/focus.
-               Each <a> opens in a new tab with rel="noopener noreferrer".
-               ───────────────────────────────────────────────────────── -->
+              Reveals a panel of external project links on hover/focus.
+              Each <a> opens in a new tab with rel="noopener noreferrer".
+              ───────────────────────────────────────────────────────── -->
           <li class="nav-item--dropdown">
             <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false" id="projectsToggle">
               Projects
@@ -92,10 +94,10 @@
             <ul class="nav-dropdown" role="menu" aria-labelledby="projectsToggle">
               <li role="none">
                 <a href="https://chlskim.github.io/Client-Portfolio/"
-                   class="nav-dropdown__link"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   role="menuitem">
+                  class="nav-dropdown__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="menuitem">
                   <!-- Star icon inline with label -->
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
                     <path d="M8 1l1.8 5h5.2l-4.2 3 1.6 5L8 11.3 3.6 14l1.6-5L1 6h5.2z"/>
@@ -115,10 +117,10 @@
 
 
   <!-- ============================================================
-       HERO SECTION
-       Full-viewport editorial layout with parallax Starry Night
-       background, giant name, center panel, and lower stats strip.
-       ============================================================ -->
+      HERO SECTION
+      Full-viewport editorial layout with parallax Starry Night
+      background, giant name, center panel, and lower stats strip.
+      ============================================================ -->
   <section class="hero" id="hero" aria-label="Introduction">
 
     <!-- Atmospheric overlays (decorative, no interaction) -->
@@ -235,9 +237,15 @@
       <div class="hero-collection-card">
         <div class="hero-collection-card__frame">
           <div class="hero-collection-card__ph">
-            <img src="images/hero/card.jpg"
-                 alt="My Skills collection"
-                 class="hero-collection-card__img" />
+            <img src="images/hero/card-480.jpg"
+                srcset="images/hero/card-480.jpg 480w, images/hero/card-720.jpg 720w, images/hero/card.jpg 1414w"
+                sizes="(max-width: 1024px) 220px, 260px"
+                width="1414"
+                height="2000"
+                alt="My Skills collection"
+                class="hero-collection-card__img"
+                decoding="async"
+                fetchpriority="low" />
           </div>
         </div>
         <div class="hero-collection-card__body">
@@ -260,10 +268,10 @@
 
 
   <!-- ============================================================
-       ABOUT SECTION — Editorial split panel
-       Left  = full-height GIF/image with name identity overlay
-       Right = parchment bio + education timeline
-       ============================================================ -->
+      ABOUT SECTION — Editorial split panel
+      Left  = full-height GIF/image with name identity overlay
+      Right = parchment bio + education timeline
+      ============================================================ -->
   <section class="about" id="about" aria-label="About Chelsea Resada">
 
     <div class="am-split">
@@ -277,15 +285,24 @@
           Profile GIF — onerror falls back to the placeholder below.
           Place chelsea-about.gif in images/about/.
         -->
-        <img
-          src="images/about/chelsea-about.gif"
-          alt="Chelsea Resada"
-          class="am-left-panel__gif"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-        />
+        <picture>
+          <source
+            srcset="images/about/chelsea-about-poster-960.jpg"
+            media="(prefers-reduced-motion: reduce), (max-width: 900px)"
+          />
+          <img
+            src="images/about/chelsea-about.gif"
+            alt="Chelsea Resada"
+            width="1920"
+            height="1080"
+            class="am-left-panel__gif"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
 
         <!-- Placeholder: shown when GIF is missing -->
-        <div class="am-left-panel__placeholder" style="display:none;" aria-hidden="true">
+        <div class="am-left-panel__placeholder" hidden aria-hidden="true">
           <span class="am-left-panel__placeholder-icon">✦</span>
           <span class="am-left-panel__placeholder-text">chelsea-about.gif</span>
           <span class="am-left-panel__placeholder-hint">Place your gif in images/about/</span>
@@ -340,8 +357,12 @@
             </h3>
             <div class="am-right-heading__pfp-wrap">
               <img src="images/about/myphoto.jpg"
-                   alt="Chelsea Resada profile photo"
-                   class="am-right-heading__pfp" />
+                  alt="Chelsea Resada profile photo"
+                  width="864"
+                  height="864"
+                  class="am-right-heading__pfp"
+                  loading="lazy"
+                  decoding="async" />
             </div>
             <div class="am-right-heading__rule" aria-hidden="true"></div>
           </div>
@@ -402,12 +423,12 @@
 
 
   <!-- ============================================================
-       STELLAR MAP — Interactive skill constellation
-       Each .stellar-node is a clickable hotspot positioned via
-       CSS custom properties --nx (left %) and --ny (top %).
-       JS (js/stellar-map/stellar-map-interactions.js) adds
-       .is-open to reveal the popup card above each node.
-       ============================================================ -->
+      STELLAR MAP — Interactive skill constellation
+      Each .stellar-node is a clickable hotspot positioned via
+      CSS custom properties --nx (left %) and --ny (top %).
+      JS (js/stellar-map/stellar-map-interactions.js) adds
+      .is-open to reveal the popup card above each node.
+      ============================================================ -->
   <section class="stellar-map" id="stellar-map" aria-label="Skills constellation map">
 
     <!-- Section header -->
@@ -427,15 +448,15 @@
       <div class="stellar-map__vignette" aria-hidden="true"></div>
 
       <!-- Shooting-star canvas — JS (stellar-map-interactions.js) draws
-           randomised streaks across the stage at staggered intervals.
-           Sits above the background but below nodes (z-index: 1). -->
+          randomised streaks across the stage at staggered intervals.
+          Sits above the background but below nodes (z-index: 1). -->
       <canvas class="stellar-map__shooting-stars" aria-hidden="true"></canvas>
 
       <!-- SVG constellation lines connecting the nodes -->
       <svg class="stellar-map__lines"
-           viewBox="0 0 100 100"
-           preserveAspectRatio="none"
-           aria-hidden="true">
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true">
         <line x1="32" y1="38" x2="50" y2="52" />
         <line x1="50" y1="52" x2="50" y2="72" />
         <line x1="50" y1="72" x2="35" y2="82" />
@@ -449,9 +470,9 @@
 
       <!-- ── Node 1: Code Foundations ── -->
       <div class="stellar-node stellar-node--skill"
-           style="--nx: 32%; --ny: 38%;"
-           tabindex="0"
-           aria-label="Skill: Code Foundations — click to expand">
+          style="--nx: 32%; --ny: 38%;"
+          tabindex="0"
+          aria-label="Skill: Code Foundations — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -488,9 +509,9 @@
 
       <!-- ── Node 2: VS Code Forge ── -->
       <div class="stellar-node stellar-node--skill"
-           style="--nx: 50%; --ny: 52%;"
-           tabindex="0"
-           aria-label="Skill: VS Code Forge — click to expand">
+          style="--nx: 50%; --ny: 52%;"
+          tabindex="0"
+          aria-label="Skill: VS Code Forge — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -523,9 +544,9 @@
 
       <!-- ── Node 3: Collaborative Spirit ── -->
       <div class="stellar-node stellar-node--skill stellar-node--soft"
-           style="--nx: 50%; --ny: 72%;"
-           tabindex="0"
-           aria-label="Skill: Collaborative Spirit — click to expand">
+          style="--nx: 50%; --ny: 72%;"
+          tabindex="0"
+          aria-label="Skill: Collaborative Spirit — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -558,9 +579,9 @@
 
       <!-- ── Node 4: Content Craft ── -->
       <div class="stellar-node stellar-node--skill"
-           style="--nx: 18%; --ny: 58%;"
-           tabindex="0"
-           aria-label="Skill: Content Craft — click to expand">
+          style="--nx: 18%; --ny: 58%;"
+          tabindex="0"
+          aria-label="Skill: Content Craft — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -593,9 +614,9 @@
 
       <!-- ── Node 5: Digital Presence ── -->
       <div class="stellar-node stellar-node--skill stellar-node--soft"
-           style="--nx: 82%; --ny: 58%;"
-           tabindex="0"
-           aria-label="Skill: Digital Presence — click to expand">
+          style="--nx: 82%; --ny: 58%;"
+          tabindex="0"
+          aria-label="Skill: Digital Presence — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -628,9 +649,9 @@
 
       <!-- ── Node 6: Leadership Orbit ── -->
       <div class="stellar-node stellar-node--skill stellar-node--soft"
-           style="--nx: 35%; --ny: 82%;"
-           tabindex="0"
-           aria-label="Skill: Leadership Orbit — click to expand">
+          style="--nx: 35%; --ny: 82%;"
+          tabindex="0"
+          aria-label="Skill: Leadership Orbit — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -663,9 +684,9 @@
 
       <!-- ── Node 7: Design Studio ── -->
       <div class="stellar-node stellar-node--skill"
-           style="--nx: 68%; --ny: 28%;"
-           tabindex="0"
-           aria-label="Skill: Design Studio — click to expand">
+          style="--nx: 68%; --ny: 28%;"
+          tabindex="0"
+          aria-label="Skill: Design Studio — click to expand">
         <div class="stellar-node__ring stellar-node__ring--outer" aria-hidden="true"></div>
         <div class="stellar-node__ring stellar-node__ring--inner" aria-hidden="true"></div>
         <div class="stellar-node__glyph" aria-hidden="true">✦</div>
@@ -826,11 +847,11 @@
 
 
   <!-- ============================================================
-       LABORATORY — Academic activities and coursework
-       Filter tabs (All / Midterm / Finals) and 4-per-page pagination
-       are handled by js/laboratory/laboratory-filter.js.
-       Each card carries data-period="midterm|finals" for filtering.
-       ============================================================ -->
+      LABORATORY — Academic activities and coursework
+      Filter tabs (All / Midterm / Finals) and 4-per-page pagination
+      are handled by js/laboratory/laboratory-filter.js.
+      Each card carries data-period="midterm|finals" for filtering.
+      ============================================================ -->
   <section class="laboratory" id="laboratory" aria-label="Laboratory activities">
     <div class="section-container">
 
@@ -846,9 +867,9 @@
 
       <!-- Period filter tabs -->
       <div class="lab-filter-tabs"
-           role="tablist"
-           aria-label="Filter by exam period"
-           data-reveal data-reveal-delay="100">
+          role="tablist"
+          aria-label="Filter by exam period"
+          data-reveal data-reveal-delay="100">
         <button class="lab-filter-tab is-active" data-period-filter="all"     role="tab" aria-selected="true">All</button>
         <button class="lab-filter-tab"            data-period-filter="midterm" role="tab" aria-selected="false">Midterm</button>
         <button class="lab-filter-tab"            data-period-filter="finals"  role="tab" aria-selected="false">Finals</button>
@@ -872,7 +893,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2025</span>
               <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity1.html"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -893,7 +914,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2025</span>
               <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity2.html"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -914,7 +935,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2025</span>
               <a href="https://chlskim.github.io/CTWBDEVL_Lab_Activities/Activity3-Resada.html"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -935,7 +956,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2025</span>
               <a href="https://jovial-griffin-13640c.netlify.app/"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -957,7 +978,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2026</span>
               <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -979,7 +1000,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2026</span>
               <a href="https://nuquestactivity1.infinityfree.me/?i=2"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -1001,7 +1022,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 2026</span>
               <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -1022,7 +1043,7 @@
             <div class="lab-card__footer">
               <span class="lab-card__date">📅 April 20, 2026</span>
               <a href="https://nationalueduph-my.sharepoint.com/:f:/g/personal/resadacb_students_nu-clark_edu_ph/IgBoxnyS4UM7Qol6nl9ZWmzCASulzsYPy4BqqCBs0frTqn4?e=ej4HMV"
-                 target="_blank" rel="noopener" class="lab-card__link">View Activity →</a>
+                target="_blank" rel="noopener noreferrer" class="lab-card__link">View Activity →</a>
             </div>
           </div>
         </div>
@@ -1044,9 +1065,9 @@
 
 
   <!-- ============================================================
-       ACHIEVEMENTS — Certificates and academic milestones
-       Frosted glass plaque cards on a parallax Starry Night background.
-       ============================================================ -->
+      ACHIEVEMENTS — Certificates and academic milestones
+      Frosted glass plaque cards on a parallax Starry Night background.
+      ============================================================ -->
   <section class="achievements" id="certificates" aria-label="Certificates and achievements">
 
     <div class="achv-glow achv-glow--a" aria-hidden="true"></div>
@@ -1076,7 +1097,7 @@
             <p class="achv-plaque__date">3/16/2026</p>
           </div>
           <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQCr4WMIhTBeS621jc-1VL7jATjQHEsLiBHQ1l7TjG7QEzE?e=ZGDy47"
-             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
             View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
           </a>
         </article>
@@ -1092,7 +1113,7 @@
             <p class="achv-plaque__date">10/8/2025</p>
           </div>
           <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQBNpCvFK-7OSpK7Yzx4JiErAdex1HBQoMkH6HSGEaXKhEY?e=yi16LB"
-             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
             View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
           </a>
         </article>
@@ -1108,7 +1129,7 @@
             <p class="achv-plaque__date">2/4/2026</p>
           </div>
           <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQAKan-EPolLSpaiXNPbhyS_ASZnZhdECFarRROSp_KjtXM?e=YI3RQb"
-             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
             View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
           </a>
         </article>
@@ -1124,7 +1145,7 @@
             <p class="achv-plaque__date">2024 – 2025</p>
           </div>
           <a href="https://nationalueduph-my.sharepoint.com/:b:/g/personal/resadacb_students_nu-clark_edu_ph/IQAgRymUxB_KRYmUoNfIBdwuASCgQbZ4YZMpuZu01cUxKEs?e=9uArCa"
-             target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
+            target="_blank" rel="noopener noreferrer" class="achv-plaque__link">
             View Certificate <span class="achv-plaque__link-arrow" aria-hidden="true">→</span>
           </a>
         </article>
@@ -1160,10 +1181,10 @@
 
 
   <!-- ============================================================
-       CONTACT — Celestial invitation card
-       Left column: contact link rows.
-       Right column: Formspree form (submission handled in-page).
-       ============================================================ -->
+      CONTACT — Celestial invitation card
+      Left column: contact link rows.
+      Right column: Formspree form (submission handled in-page).
+      ============================================================ -->
   <section class="contact" id="contact" aria-label="Contact Chelsea Resada">
 
     <div class="contact-glow contact-glow--a" aria-hidden="true"></div>
@@ -1229,22 +1250,29 @@
               <div class="invite-form__group">
                 <label for="inv-name" class="invite-form__label">Your Name</label>
                 <input type="text" id="inv-name" name="name"
-                       class="invite-form__input"
-                       placeholder="Juan dela Cruz" required />
+                      class="invite-form__input"
+                      placeholder="Juan dela Cruz"
+                      autocomplete="name"
+                      maxlength="80"
+                      required />
               </div>
 
               <div class="invite-form__group">
                 <label for="inv-email" class="invite-form__label">Email Address</label>
                 <input type="email" id="inv-email" name="email"
-                       class="invite-form__input"
-                       placeholder="you@example.com" required />
+                      class="invite-form__input"
+                      placeholder="you@example.com"
+                      autocomplete="email"
+                      maxlength="120"
+                      required />
               </div>
 
               <div class="invite-form__group">
                 <label for="inv-subject" class="invite-form__label">Subject</label>
                 <input type="text" id="inv-subject" name="subject"
-                       class="invite-form__input"
-                       placeholder="A Celestial Collaboration" />
+                      class="invite-form__input"
+                      placeholder="A Celestial Collaboration"
+                      maxlength="120" />
               </div>
 
               <div class="invite-form__group">
@@ -1252,7 +1280,9 @@
                 <textarea id="inv-message" name="message"
                           class="invite-form__textarea"
                           rows="4"
-                          placeholder="Write your message here…" required></textarea>
+                          placeholder="Write your message here…"
+                          maxlength="1200"
+                          required></textarea>
               </div>
 
               <button type="submit" class="invite-form__submit" id="contactSubmitBtn">
@@ -1286,9 +1316,9 @@
 
 
   <!-- ============================================================
-       FOOTER
-       Three-column: brand | navigation | quote
-       ============================================================ -->
+      FOOTER
+      Three-column: brand | navigation | quote
+      ============================================================ -->
   <footer class="footer" aria-label="Site footer">
 
     <div class="footer-glow footer-glow--left"  aria-hidden="true"></div>
@@ -1349,8 +1379,8 @@
 
 
   <!-- ============================================================
-       SCRIPTS — loaded at end of body so the DOM is ready.
-       ============================================================ -->
+      SCRIPTS — loaded at end of body so the DOM is ready.
+      ============================================================ -->
   <script src="js/navigation/navbar.js"></script>
   <script src="js/hero/hero-effects.js"></script>
   <script src="js/stellar-map/stellar-map-interactions.js"></script>

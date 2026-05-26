@@ -18,6 +18,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;              /* 1rem = 16px baseline */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;  /* smoother text on macOS/iOS */
   overflow-x: hidden;                   /* prevents horizontal scroll on mobile */
+  min-width: 320px;
 }
 
 /* ── Media elements ──────────────────────────────────────────────
@@ -36,6 +38,10 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 /* ── Interactive elements ────────────────────────────────────────
@@ -62,4 +68,36 @@ input,
 textarea,
 select {
   font-family: var(--font-body);
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+@supports (content-visibility: auto) {
+  .about,
+  .stellar-map,
+  .laboratory,
+  .achievements,
+  .contact,
+  .footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

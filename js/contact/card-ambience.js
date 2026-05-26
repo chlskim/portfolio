@@ -61,6 +61,10 @@
   let W = 0, H = 0;
   /* Card bounding box relative to the section — updated on resize */
   let cardRect = { left: 0, top: 0, right: 0, bottom: 0, width: 0, height: 0 };
+  let animationFrameId = 0;
+  let glimmerTimerId = 0;
+  let shouldAnimate = false;
+  let isRunning = false;
 
   /**
    * Measures the canvas and card geometry.
@@ -254,18 +258,16 @@
 
   /* Schedule glimmers at randomised intervals so they feel organic */
   function scheduleGlimmer() {
+    window.clearTimeout(glimmerTimerId);
+    if (!isRunning) return;
+
     const delay = 2000 + Math.random() * 2000;
-    setTimeout(() => {
+    glimmerTimerId = window.setTimeout(() => {
+      if (!isRunning) return;
       emitCornerGlimmer();
       scheduleGlimmer();
     }, delay);
   }
-
-  /* Fire the first glimmer after a short settling delay */
-  setTimeout(() => {
-    emitCornerGlimmer();
-    scheduleGlimmer();
-  }, 1200);
 
 
   /* ================================================================
@@ -277,9 +279,45 @@
     ctx.clearRect(0, 0, W, H);
     drawMotes();
     drawGlimmerSparks();
-    requestAnimationFrame(tick);
+    if (isRunning) {
+      animationFrameId = requestAnimationFrame(tick);
+    }
   }
 
-  tick();
+  function startAnimation() {
+    if (isRunning) return;
+    isRunning = true;
+    measure();
+    scheduleGlimmer();
+    tick();
+  }
+
+  function stopAnimation() {
+    isRunning = false;
+    window.clearTimeout(glimmerTimerId);
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  function syncAnimationState() {
+    if (shouldAnimate && !document.hidden) {
+      startAnimation();
+    } else {
+      stopAnimation();
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(([entry]) => {
+      shouldAnimate = entry.isIntersecting;
+      syncAnimationState();
+    }, { rootMargin: '120px 0px' });
+
+    sectionObserver.observe(section);
+  } else {
+    shouldAnimate = true;
+    syncAnimationState();
+  }
+
+  document.addEventListener('visibilitychange', syncAnimationState);
 
 })();

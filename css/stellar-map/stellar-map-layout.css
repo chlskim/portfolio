@@ -303,10 +303,6 @@
 .stellar-mob-card--soft         { border-color: rgba(176,196,222,0.2); }
 .stellar-mob-card--soft:hover   { border-color: rgba(176,196,222,0.4); }
 
-/* Project variant — cobalt border */
-.stellar-mob-card--project       { border-color: rgba(122,184,232,0.2); }
-.stellar-mob-card--project:hover { border-color: rgba(122,184,232,0.4); }
-
 /* Card header: icon + badge/title/subtitle */
 .stellar-mob-card__head {
   display: flex;
@@ -318,7 +314,7 @@
   font-size: 1.1rem;
   line-height: 1;
   flex-shrink: 0;
-  letter-spacing: -0.1em;
+  letter-spacing: 0;
 }
 
 .stellar-mob-card__badge {
@@ -335,7 +331,6 @@
 }
 
 .stellar-mob-card__badge--soft    { color: var(--color-stone-mid);   border-color: rgba(176,196,222,0.3); }
-.stellar-mob-card__badge--project { color: #7ab8e8;                  border-color: rgba(122,184,232,0.3); }
 
 .stellar-mob-card__title {
   font-family: var(--font-serif);

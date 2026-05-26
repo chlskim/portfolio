@@ -26,6 +26,7 @@
     if (!node.getAttribute('role')) {
       node.setAttribute('role', 'button');
     }
+    node.setAttribute('aria-expanded', 'false');
   });
 
 
@@ -38,17 +39,24 @@
     const isAlreadyOpen = targetNode.classList.contains('is-open');
 
     /* Close every node first */
-    nodes.forEach(n => n.classList.remove('is-open'));
+    nodes.forEach(n => {
+      n.classList.remove('is-open');
+      n.setAttribute('aria-expanded', 'false');
+    });
 
     /* If the target wasn't already open, open it now */
     if (!isAlreadyOpen) {
       targetNode.classList.add('is-open');
+      targetNode.setAttribute('aria-expanded', 'true');
     }
   }
 
   /** Closes all open nodes. Called on outside click or Escape key. */
   function closeAll() {
-    nodes.forEach(n => n.classList.remove('is-open'));
+    nodes.forEach(n => {
+      n.classList.remove('is-open');
+      n.setAttribute('aria-expanded', 'false');
+    });
   }
 
 
@@ -101,9 +109,14 @@
 
   if (canvas && stage) {
     const ctx = canvas.getContext('2d');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* Active star objects — each tick updates their progress */
     const activeStars = [];
+    let animationFrameId = 0;
+    let spawnTimerId = 0;
+    let shouldAnimate = false;
+    let isRunning = false;
 
     /* Palette pulled from the existing star field — white, gold, teal */
     const STAR_COLOURS = [
@@ -120,6 +133,11 @@
       const rect = stage.getBoundingClientRect();
       canvas.width  = rect.width;
       canvas.height = rect.height;
+    }
+
+    if (prefersReduced) {
+      resizeCanvas();
+      return;
     }
 
     /**
@@ -193,6 +211,8 @@
      * star positions, draws them, and removes finished streaks.
      */
     function tick() {
+      if (!isRunning) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = activeStars.length - 1; i >= 0; i--) {
@@ -211,7 +231,7 @@
         }
       }
 
-      requestAnimationFrame(tick);
+      animationFrameId = requestAnimationFrame(tick);
     }
 
     /**
@@ -219,23 +239,55 @@
      * streaks appear organically, not in a mechanical rhythm.
      */
     function scheduleNextStar() {
+      window.clearTimeout(spawnTimerId);
+      if (!isRunning) return;
+
       const delay = 1800 + Math.random() * 3200; /* 1.8 – 5 s between stars */
-      setTimeout(() => {
+      spawnTimerId = window.setTimeout(() => {
+        if (!isRunning) return;
         spawnStar();
         scheduleNextStar();
       }, delay);
     }
 
-    /* Initialise */
+    function startAnimation() {
+      if (isRunning) return;
+      isRunning = true;
+      resizeCanvas();
+      scheduleNextStar();
+      animationFrameId = requestAnimationFrame(tick);
+    }
+
+    function stopAnimation() {
+      isRunning = false;
+      window.clearTimeout(spawnTimerId);
+      cancelAnimationFrame(animationFrameId);
+    }
+
+    function syncAnimationState() {
+      if (shouldAnimate && !document.hidden) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
+    }
+
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    /* Stagger the first two bursts so the map feels lively quickly */
-    setTimeout(spawnStar, 600);
-    setTimeout(spawnStar, 2200);
-    scheduleNextStar();
+    if ('IntersectionObserver' in window) {
+      const stageObserver = new IntersectionObserver(([entry]) => {
+        shouldAnimate = entry.isIntersecting;
+        syncAnimationState();
+      }, { rootMargin: '120px 0px' });
 
-    tick();
+      stageObserver.observe(stage);
+    } else {
+      shouldAnimate = true;
+      syncAnimationState();
+    }
+
+    document.addEventListener('visibilitychange', syncAnimationState);
   }
 
 })();

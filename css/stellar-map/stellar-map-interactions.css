@@ -130,28 +130,6 @@
 .stellar-node--soft .stellar-node__ring--inner  { border-color: rgba(176,196,222,0.75); }
 .stellar-node--soft .stellar-node__tag          { color: rgba(176,196,222,0.9); border-color: rgba(176,196,222,0.25); }
 
-/* Project — cobalt blue */
-.stellar-node--project .stellar-node__glyph {
-  color: #7ab8e8;
-  text-shadow: 0 0 16px rgba(122,184,232,0.85), 0 0 32px rgba(122,184,232,0.4);
-}
-
-.stellar-node--project .stellar-node__ring         { border-color: rgba(122,184,232,0.45); }
-.stellar-node--project .stellar-node__ring--inner  { border-color: rgba(122,184,232,0.75); }
-.stellar-node--project .stellar-node__tag          { color: rgba(122,184,232,0.95); border-color: rgba(122,184,232,0.25); }
-
-/* Certificate — rose-gold */
-.stellar-node--cert .stellar-node__glyph {
-  color: #f0a0c8;
-  text-shadow: 0 0 16px rgba(240,160,200,0.9), 0 0 32px rgba(220,80,140,0.5), 0 0 48px rgba(220,80,140,0.25);
-  font-size: 1.4rem;
-}
-
-.stellar-node--cert .stellar-node__ring         { border-color: rgba(220,80,140,0.35); }
-.stellar-node--cert .stellar-node__ring--inner  { border-color: rgba(240,160,200,0.70); }
-.stellar-node--cert .stellar-node__tag          { color: rgba(240,160,200,0.95); border-color: rgba(220,80,140,0.25); background: rgba(220,80,140,0.08); }
-
-
 /* ================================================================
    POPUP CARD — Appears above the node on click/tap
    ================================================================ */
@@ -231,19 +209,6 @@
   margin-bottom: 10px;
 }
 
-/* Project badge — blue */
-.stellar-popup__type-badge--project {
-  color: #7ab8e8;
-  border-color: rgba(122,184,232,0.35);
-}
-
-/* Certificate badge — rose */
-.stellar-popup__type-badge--cert {
-  background: rgba(220,80,140,0.15);
-  color: rgba(240,160,200,0.95);
-  border-color: rgba(220,80,140,0.3);
-}
-
 .stellar-popup__title {
   font-family: var(--font-serif);
   font-size: 1.15rem;
@@ -308,21 +273,3 @@
   line-height: 1.5;
 }
 
-/* Optional "View Project →" link inside project popups */
-.stellar-popup__cta {
-  display: inline-block;
-  margin-top: 14px;
-  font-family: var(--font-display);
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #7ab8e8;
-  border-bottom: 1px solid rgba(122,184,232,0.35);
-  padding-bottom: 2px;
-  transition: color var(--transition-fast);
-}
-
-.stellar-popup__cta:hover {
-  color: var(--accent-primary);
-  border-color: var(--accent-soft);
-}
