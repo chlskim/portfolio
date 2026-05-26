@@ -1,0 +1,292 @@
+/* ================================================================
+   FOOTER — footer-layout.css
+   Three-column grid: brand | navigation | quote.
+   Dark gradient background with atmospheric glow blobs.
+   ================================================================ */
+
+.footer {
+  background: linear-gradient(180deg, #060d20 0%, #02060f 100%);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Atmospheric glow blobs — Starry Night palette */
+.footer-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+.footer-glow--left {
+  width: 420px; height: 280px;
+  top: 0; left: -80px;
+  background: radial-gradient(ellipse, rgba(42,82,152,0.28) 0%, transparent 70%);
+}
+
+.footer-glow--right {
+  width: 360px; height: 240px;
+  top: 0; right: -60px;
+  background: radial-gradient(ellipse, rgba(210,168,50,0.12) 0%, transparent 70%);
+}
+
+.footer-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 56px var(--container-pad) 32px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top ornament — ✦ with flanking rules */
+.footer-ornament {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 52px;
+}
+
+.footer-ornament__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,197,71,0.35), transparent);
+}
+
+.footer-ornament__star {
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+}
+
+/* Three-column grid */
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+/* ── Brand column ────────────────────────────────────────────────
+   Monogram box, name, and tagline. Lifts slightly on hover.
+   ─────────────────────────────────────────────────────────────── */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform var(--transition-med);
+}
+
+.footer-brand:hover { transform: translateY(-3px); }
+
+.footer-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(232,197,71,0.35);
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--accent-primary);
+  margin-bottom: 12px;
+  background: rgba(232,197,71,0.05);
+  letter-spacing: 0.08em;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.footer-monogram:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px rgba(232,197,71,0.12);
+}
+
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  color: rgba(176,196,222,0.5);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── Navigation column ───────────────────────────────────────────
+   Each link has a — prefix and slides right on hover.
+   ─────────────────────────────────────────────────────────────── */
+.footer-nav__heading {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+.footer-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav__link {
+  font-size: 0.85rem;
+  color: rgba(176,196,222,0.6);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* The — prefix decorates each link */
+.footer-nav__link::before {
+  content: '—';
+  font-size: 0.55rem;
+  color: rgba(232,197,71,0.4);
+}
+
+.footer-nav__link:hover {
+  color: var(--accent-primary);
+  transform: translateX(4px);
+}
+
+/* ── Quote column ────────────────────────────────────────────────
+   Italic blockquote with gold left border.
+   ─────────────────────────────────────────────────────────────── */
+.footer-quote-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.0rem;
+  line-height: 1.65;
+  color: rgba(176,196,222,0.65);
+  border-left: 2px solid rgba(232,197,71,0.3);
+  padding-left: 16px;
+  margin: 0;
+}
+
+.footer-quote__attr {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232,197,71,0.45);
+  padding-left: 18px;
+}
+
+/* Horizontal divider above the copyright row */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(176,196,222,0.12), transparent);
+  margin-bottom: 24px;
+}
+
+/* Copyright row */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy,
+.footer-made {
+  font-size: 0.78rem;
+  color: rgba(176,196,222,0.35);
+  letter-spacing: 0.03em;
+}
+
+
+/* ================================================================
+   FOOTER — RESPONSIVE
+   ================================================================ */
+
+/* ── Tablet: ≤ 1024px ────────────────────────────────────────────
+   Drop to two columns. The quote column wraps below.
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+}
+
+/* ── Mobile: ≤ 768px ─────────────────────────────────────────────
+   Two columns: brand left, nav right.
+   Quote spans the full width as a slim strip at the bottom.
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .footer-container { padding: 32px var(--container-pad) 20px; }
+
+  .footer-ornament { margin-bottom: 24px; }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+
+  .footer-brand   { gap: 4px; }
+  .footer-monogram { width: 40px; height: 40px; font-size: 0.9rem; margin-bottom: 8px; }
+  .footer-name    { font-size: 0.95rem; }
+  .footer-tagline { font-size: 0.72rem; }
+
+  .footer-nav__list { gap: 6px; }
+  .footer-nav__link { font-size: 0.78rem; gap: 6px; }
+
+  /* Quote spans both columns as a bottom strip */
+  .footer-quote-col {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 0 0;
+    border-top: 1px solid rgba(232,197,71,0.1);
+    margin-top: 20px;
+  }
+
+  .footer-quote {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    border-left-width: 1.5px;
+    padding-left: 12px;
+  }
+
+  .footer-quote__attr {
+    font-size: 0.52rem;
+    padding-left: 14px;
+    opacity: 0.6;
+  }
+
+  /* Stack the copyright row */
+  .footer-bottom {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .footer-copy,
+  .footer-made { font-size: 0.68rem; }
+
+}
+
+/* ── Small mobile: ≤ 480px ───────────────────────────────────────
+   Slightly more top padding on tiny screens.
+   ─────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .footer-container { padding: 40px var(--container-pad) 24px; }
+}
